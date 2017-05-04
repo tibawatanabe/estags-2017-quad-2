@@ -1,8 +1,37 @@
-<h2>Faça login:</h2>
-<form method="post">
-  <label>Usuário</label>
-  <input type="text" placeholder="digite o nome de usuário" name="username">
-  <label>Senha</label>
-  <input type="password" placeholder="digite sua senha" name="password">
-  <button type="submit">Login</button>
-</form>
+<div class="container">
+  <h2>Faça seu login:</h2>
+  <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+    <div class="form-group">
+      <label for="username">Usuário</label>
+      <input type="text" class="form-control" placeholder="digite seu usuário" id="username"
+             required
+             [(ngModel)]="model.name" name="user"
+             #user="ngModel">
+      <div [hidden]="user.valid || user.pristine"
+             class="alert alert-danger">
+          É necessário inserir um usuário
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Senha</label>
+      <input type="password" class="form-control" placeholder="digite sua senha" id="username"
+            required
+            [(ngModel)]="model.password" name="password"
+            #password="ngModel">
+      <div [hidden]="password.valid || password.pristine"
+             class="alert alert-danger">
+          É necessário digitar uma senha
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-success" [disabled]="!loginForm.form.valid" (click)="setAuth(user.value, password.value); loginForm.reset()">Log in</button>
+
+    <button type="button" class="btn btn-default" (click)="newUser(); loginForm.reset()">Novo usuário</button>
+
+  </form>
+  <div *ngIf="usuario && senha">
+    <p>usuario é {{usuario}}</p>
+    <p>senha é {{senha}}</p>
+  </div>
+</div>
