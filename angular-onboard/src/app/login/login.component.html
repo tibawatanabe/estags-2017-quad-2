@@ -25,17 +25,13 @@
       </div>
     </div>
 
-    <button type="submit" class="btn btn-success" [disabled]="!loginForm.form.valid" (click)="setAuth(user.value, password.value); loginForm.reset()">Log in</button>
-
-    <button type="button" class="btn btn-default" (click)="newUser(); loginForm.reset()">Novo usuário</button>
-
+    <button type="submit" class="btn btn-success" [disabled]="!loginForm.form.valid"
+            (click)="login(user.value, password.value); loginForm.reset()">
+            Log in
+    </button>
   </form>
-  <div *ngIf="usuario && senha">
-    <p>usuario é {{usuario}}</p>
-    <p>senha é {{senha}}</p>
-  </div>
 
   <div>
-    {{logou}}
+    {{token}}
   </div>
 </div>

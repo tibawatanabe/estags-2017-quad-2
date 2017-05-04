@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { UserComponent } from '../user/user.component';
 import { TaqtileApiService } from '../taqtile-api.service';
+import { UserInfoService } from '../user-info.service';
 
 @Component({
   selector: 'login',
@@ -12,40 +13,28 @@ import { TaqtileApiService } from '../taqtile-api.service';
 export class LoginComponent implements OnInit {
   usuario: string;
   senha: string;
-  logou = "nada aqui";
-  sub: any;
-  
-  model = new UserComponent(0, "", "", "");
-  submitted = false;
-  onSubmit() { this.submitted = true; }
-  // TODO: Remove this when we're done
-  get diagnostic() { return JSON.stringify(this.model); }
-
-  newUser() {
-    this.model = new UserComponent(42, '', '', '');
-  }
-
-  setAuth(usuario: string, senha: string) {
-    this.usuario = usuario;
-    this.senha = senha;
-
-    this._taqtileApiService.login(usuario, senha).subscribe(data => {this.logou = data});
-
-    this.sub = this.route.params.subscribe(params => {
-      this._taqtileApiService.login(usuario, senha).subscribe(data => {
-        this.logou = data;
-      }, error => console.log('Could not load item'));
-    });
-  }
-
-  
+  token: string;
 
   constructor(
     private _taqtileApiService: TaqtileApiService,
-    private route: ActivatedRoute
+    private _userInfoService: UserInfoService
   ) { }
 
   ngOnInit() {
   }
+  
+  model = new UserComponent(0, "", "", "");
+  submitted = false;
+  onSubmit() { 
+    this.submitted = true;
+  }
 
+  login(usuario: string, senha: string) {
+    this.usuario = usuario;
+    this.senha = senha;
+
+    this._taqtileApiService.login(usuario, senha).subscribe(response => {this.token = response.data.token});
+    
+    this._userInfoService.setToken(this.token);
+  }
 }

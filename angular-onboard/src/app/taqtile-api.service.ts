@@ -12,7 +12,8 @@ export class TaqtileApiService {
   }
 
   login(user: string, password: string): Observable<any> {
-    return this.http.get(`${this.baseUrl}/authenticate`, `{ "user": ${user}, "password": ${password }`)
+    let body = { user, password };
+    return this.http.post(`${this.baseUrl}/authenticate`, body)
                     .map(response => response.json());
   }
 
