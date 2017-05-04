@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class LoginViewController: UIViewController {
 
@@ -23,10 +24,22 @@ class LoginViewController: UIViewController {
         let username = usernameField.text
         let password = passwordField.text
         
+        // Alamofire.request("API") // enviando o login senha
+        Alamofire.request("https://httpbin.org/get").responseJSON { response in
+            print(response.request)  // original URL request
+            print(response.response) // HTTP URL response
+            print(response.data)     // server data
+            print(response.result)   // result of response serialization
+            
+            if let JSON = response.result.value {
+                print("JSON: \(JSON)")
+            }
+        }
+        
         if(username == "" || password == ""){
             displayMessage(msg: "Please fill in all required fields")
         }
-        else if (username == "Paula" && password == "1234"){
+        else if (username == "pypasquao" && password == "1234"){
             print("Ok!")
         }
         else {

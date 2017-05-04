@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1DA66C4E93725AE8FE2923B8 /* Pods_ProjetoBasico.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89B9D4ED6C37498805A70F63 /* Pods_ProjetoBasico.framework */; };
 		4D494FD11EBB72560031FA8A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D494FD01EBB72560031FA8A /* LoginViewController.swift */; };
+		4D494FD31EBBAF240031FA8A /* UsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D494FD21EBBAF240031FA8A /* UsersTableViewController.swift */; };
+		4D494FD51EBBAF9F0031FA8A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D494FD41EBBAF9F0031FA8A /* User.swift */; };
 		4DB70F1B1EBA52980067B6B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB70F1A1EBA52980067B6B2 /* AppDelegate.swift */; };
 		4DB70F201EBA52980067B6B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DB70F1E1EBA52980067B6B2 /* Main.storyboard */; };
 		4DB70F221EBA52980067B6B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DB70F211EBA52980067B6B2 /* Assets.xcassets */; };
@@ -15,13 +18,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		05A272B73734E831A2FEDB4F /* Pods-ProjetoBasico.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjetoBasico.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ProjetoBasico/Pods-ProjetoBasico.debug.xcconfig"; sourceTree = "<group>"; };
 		4D494FD01EBB72560031FA8A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		4D494FD21EBBAF240031FA8A /* UsersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersTableViewController.swift; sourceTree = "<group>"; };
+		4D494FD41EBBAF9F0031FA8A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4DB70F171EBA52980067B6B2 /* ProjetoBasico.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjetoBasico.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DB70F1A1EBA52980067B6B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4DB70F1F1EBA52980067B6B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4DB70F211EBA52980067B6B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4DB70F241EBA52980067B6B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4DB70F261EBA52980067B6B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		89B9D4ED6C37498805A70F63 /* Pods_ProjetoBasico.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProjetoBasico.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC3CB64887966C636C4CAACC /* Pods-ProjetoBasico.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjetoBasico.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProjetoBasico/Pods-ProjetoBasico.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +37,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1DA66C4E93725AE8FE2923B8 /* Pods_ProjetoBasico.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C096355BF9AC59606FBC3B6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				89B9D4ED6C37498805A70F63 /* Pods_ProjetoBasico.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4CE54BC0BAFFFCC86A7AE949 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				05A272B73734E831A2FEDB4F /* Pods-ProjetoBasico.debug.xcconfig */,
+				DC3CB64887966C636C4CAACC /* Pods-ProjetoBasico.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		4DB70F0E1EBA52980067B6B2 = {
 			isa = PBXGroup;
 			children = (
 				4DB70F191EBA52980067B6B2 /* ProjetoBasico */,
 				4DB70F181EBA52980067B6B2 /* Products */,
+				4CE54BC0BAFFFCC86A7AE949 /* Pods */,
+				2C096355BF9AC59606FBC3B6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,6 +88,8 @@
 				4DB70F231EBA52980067B6B2 /* LaunchScreen.storyboard */,
 				4DB70F261EBA52980067B6B2 /* Info.plist */,
 				4D494FD01EBB72560031FA8A /* LoginViewController.swift */,
+				4D494FD21EBBAF240031FA8A /* UsersTableViewController.swift */,
+				4D494FD41EBBAF9F0031FA8A /* User.swift */,
 			);
 			path = ProjetoBasico;
 			sourceTree = "<group>";
@@ -71,9 +101,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4DB70F291EBA52980067B6B2 /* Build configuration list for PBXNativeTarget "ProjetoBasico" */;
 			buildPhases = (
+				3585131DB2C41AE54563E734 /* [CP] Check Pods Manifest.lock */,
 				4DB70F131EBA52980067B6B2 /* Sources */,
 				4DB70F141EBA52980067B6B2 /* Frameworks */,
 				4DB70F151EBA52980067B6B2 /* Resources */,
+				1F6F085CAE0424FFC760F47B /* [CP] Embed Pods Frameworks */,
+				765C639C9846ABCC4BDBF2D5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -131,13 +164,63 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1F6F085CAE0424FFC760F47B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ProjetoBasico/Pods-ProjetoBasico-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3585131DB2C41AE54563E734 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		765C639C9846ABCC4BDBF2D5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ProjetoBasico/Pods-ProjetoBasico-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		4DB70F131EBA52980067B6B2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D494FD51EBBAF9F0031FA8A /* User.swift in Sources */,
 				4D494FD11EBB72560031FA8A /* LoginViewController.swift in Sources */,
 				4DB70F1B1EBA52980067B6B2 /* AppDelegate.swift in Sources */,
+				4D494FD31EBBAF240031FA8A /* UsersTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,6 +339,7 @@
 		};
 		4DB70F2A1EBA52980067B6B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 05A272B73734E831A2FEDB4F /* Pods-ProjetoBasico.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ProjetoBasico/Info.plist;
@@ -268,6 +352,7 @@
 		};
 		4DB70F2B1EBA52980067B6B2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DC3CB64887966C636C4CAACC /* Pods-ProjetoBasico.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ProjetoBasico/Info.plist;
