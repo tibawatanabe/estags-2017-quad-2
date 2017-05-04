@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Luke Cage",
+    "email": "luke@taqtile.com",
+    "password": "1111"
+  },
+  {
+    "id": 2,
+    "name": "Spider-Man",
+    "email": "spider@taqtile.com",
+    "password": "1234"
+  },
+  {
+    "id": 3,
+    "name": "Captain America",
+    "email": "captain@taqtile.com",
+    "password": "4321"
+  },
+  {
+    "id": 4,
+    "name": "Iron Man",
+    "email": "iron@taqtile.com",
+    "password": "2222"  
+    },
+  {
+    "id": 5,
+    "name": "Wolverine",
+    "email": "wolwerine@taqtile.com",
+    "password": "2341"
+  }
+]
