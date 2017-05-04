@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
-import { UserComponent } from '../user/user.component'
+import { UserComponent } from '../user/user.component';
+import { TaqtileApiService } from '../taqtile-api.service';
 
 @Component({
   selector: 'login',
@@ -10,6 +12,8 @@ import { UserComponent } from '../user/user.component'
 export class LoginComponent implements OnInit {
   usuario: string;
   senha: string;
+  logou = "nada aqui";
+  sub: any;
   
   model = new UserComponent(0, "", "", "");
   submitted = false;
@@ -23,12 +27,23 @@ export class LoginComponent implements OnInit {
 
   setAuth(usuario: string, senha: string) {
     this.usuario = usuario;
-    this.senha = usuario;
+    this.senha = senha;
+
+    this._taqtileApiService.login(usuario, senha).subscribe(data => {this.logou = data});
+
+    this.sub = this.route.params.subscribe(params => {
+      this._taqtileApiService.login(usuario, senha).subscribe(data => {
+        this.logou = data;
+      }, error => console.log('Could not load item'));
+    });
   }
 
   
 
-  constructor() { }
+  constructor(
+    private _taqtileApiService: TaqtileApiService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
   }

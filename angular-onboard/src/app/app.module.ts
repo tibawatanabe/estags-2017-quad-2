@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 import { UserComponent } from './user/user.component';
+import { TaqtileApiService } from './taqtile-api.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { UserComponent } from './user/user.component';
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [TaqtileApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
