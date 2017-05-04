@@ -23,12 +23,24 @@ class LoginViewController: UIViewController {
         let username = usernameField.text
         let password = passwordField.text
         
-        if (username == "Paula" && password == "1234"){
+        if(username == "" || password == ""){
+            displayMessage(msg: "Please fill in all required fields")
+        }
+        else if (username == "Paula" && password == "1234"){
             print("Ok!")
         }
         else {
-            print("Fail")
+            displayMessage(msg: "Username and password do not match")
         }
+    }
+    func displayMessage(msg: String){
+        let myAlert = UIAlertController(title: "Alert", message: msg, preferredStyle: UIAlertControllerStyle.alert)
+        
+        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil)
+        
+        myAlert.addAction(okAction)
+        
+        self.present(myAlert, animated: true, completion: nil)
     }
 
 }
