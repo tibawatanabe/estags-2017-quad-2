@@ -20,7 +20,7 @@ export class TaqtileApiService {
   fetchUsers(): Observable<any> {
     let headers = new Headers();
 
-    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6MX0sImlhdCI6MTQ5MzkwNjQwMywiZXhwIjoxNDkzOTEwMDAzfQ.kZqWOGjV5IuJ4WX4zwNnK5JRM3k5RspsFlO5EPlHSP0');
+    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6MX0sImlhdCI6MTQ5MzkxMjcwMiwiZXhwIjoxNDkzOTE2MzAyfQ.v5CiDcINey5X95KwUmm4qee5z7Az3vtlrvF4u35PsJY');
 
     let params = new URLSearchParams();
 
