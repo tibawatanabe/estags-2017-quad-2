@@ -1,12 +1,7 @@
 <div class="main-content">
   <ol *ngIf="users">
     <li *ngFor="let user of users" class="user-list">
-      <user class="user" name="{{user.name}}"
-                         type="{{user.type}}"
-                         id="{{user.id}}"
-                         email="{{user.email}}"
-                         creationDate="{{user.createdAt}}"
-      ></user>
+      <user class="user-block" [user]="user"></user>
     </li>
   </ol>
   <div class="nav">
@@ -17,4 +12,8 @@
       More ›
     </a>
   </div>
+</div>
+
+<div>
+  users-list aqui
 </div>

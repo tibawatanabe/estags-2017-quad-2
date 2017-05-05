@@ -16,13 +16,13 @@ export class UsersListComponent implements OnInit {
   constructor(private _taqtileApiService: TaqtileApiService) {}
 
   ngOnInit() {
-    this._taqtileApiService.fetchUsers()
-                    .do(console.log)
-                    .map(response => response.data)
+    this._taqtileApiService.getUsers()
+                    // .do(console.log)
+                    // .map(response => response.data)
                     .subscribe(
                       // users => this.users = users,
-                      users => this.users = users,
-                      error => console.log('Error fetching stories'));
+                      response => this.users = response.data,
+                      error => console.log('Error getting users'));
   }
 
 }
