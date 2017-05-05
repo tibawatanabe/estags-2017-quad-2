@@ -7,10 +7,31 @@
 //
 
 import Foundation
+import Alamofire
 
-class User{
-    var username: String?
-    var name: String?
-    var age: String?
+class User {
+    var user: String = ""
+    var password: String = ""
+    
+    func toRequestParams() -> Parameters{
+        let parameters: Parameters = [
+                    "user": self.user,
+                    "password" : self.password
+        ]
+        return parameters
+    }
 
+    func setUser(user: String){
+        self.user = user
+    }
+    func setPassword(password: String){
+        self.password = password
+    }
+    func getUser() -> String{
+        return self.user
+    }
+    func getPassword() -> String{
+        return self.password
+    }
+    
 }

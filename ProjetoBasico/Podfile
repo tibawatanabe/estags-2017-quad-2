@@ -7,4 +7,5 @@ target 'ProjetoBasico' do
 
   # Pods for ProjetoBasico
   pod 'Alamofire', '~> 4.4'
+  pod 'AlamofireObjectMapper', '~> 4.1.0'
 end

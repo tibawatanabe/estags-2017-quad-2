@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import ObjectMapper
 
 class LoginViewController: UIViewController {
 
@@ -17,34 +18,60 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
     @IBAction func loginPressed(_ sender: AnyObject) -> Void {
         
-        let username = usernameField.text
+        let user = usernameField.text
         let password = passwordField.text
         
-        // Alamofire.request("API") // enviando o login senha
-        Alamofire.request("https://httpbin.org/get").responseJSON { response in
-            print(response.request)  // original URL request
-            print(response.response) // HTTP URL response
-            print(response.data)     // server data
-            print(response.result)   // result of response serialization
-            
-            if let JSON = response.result.value {
-                print("JSON: \(JSON)")
-            }
-        }
+        // https://tq-template-node.herokuapp.com
         
-        if(username == "" || password == ""){
+        if(user == "" || password == ""){
             displayMessage(msg: "Please fill in all required fields")
         }
-        else if (username == "pypasquao" && password == "1234"){
-            print("Ok!")
+        
+        let userAtual = User()
+        
+        userAtual.setUser(user: user!)
+        userAtual.setPassword(password: password!)
+        
+        let par = userAtual.toRequestParams()
+        
+        Alamofire.request("https://tq-template-node.herokuapp.com/authenticate", method: .post, parameters: par, encoding: JSONEncoding.default).responseJSON { response in
+           
+            //FALTA CASO ERRO DE CONEXAO
+//            switch response.result {
+//            case let .success(json):
+//                print(json)
+//            case let .failure(error):
+//                print(error)
+//            }
+            
+            if let JSON = response.result.value {
+                if let data = (JSON as! NSDictionary).value(forKey: "data"){
+                    self.displayMessage(msg: "Login ok!")
+                    let token = (data as! NSDictionary).value(forKey: "token")!
+                    UserDefaults.standard.set(token, forKey: "token")
+                }
+                else if let errors = (JSON as! NSDictionary).value(forKey: "errors"){
+                    let errorMsg = (errors as! NSArray).firstObject
+                    let errorResponse = ErrorResponse(JSONString: String(data: response.data!, encoding: String.Encoding.utf8)!)
+                    self.displayMessage(msg: (errorResponse?.errors.first?.message)!)
+                }
+            }
+            
         }
-        else {
-            displayMessage(msg: "Username and password do not match")
-        }
+    
+        
+//        if(username == "" || password == ""){
+//            displayMessage(msg: "Please fill in all required fields")
+//        }
+//        else if (username == "pypasquao" && password == "1234"){
+//            print("Ok!")
+//        }
+//        else {
+//            displayMessage(msg: "Username and password do not match")
+//        }
     }
     func displayMessage(msg: String){
         let myAlert = UIAlertController(title: "Alert", message: msg, preferredStyle: UIAlertControllerStyle.alert)
