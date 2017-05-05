@@ -1,5 +1,8 @@
 import {Router, Request, Response, NextFunction} from 'express';
-const Users : Array<any> = require('../users');
+const Users : Array<any> = require('../users.json');
+
+var jwt = require('jsonwebtoken');
+
 
 export class UserRouter {
   router: Router
@@ -31,9 +34,8 @@ export class UserRouter {
     let user = Users.find(user => user.id === query);
     if (user) {
         res.status(200)
-        .send("name: " + user.name + "\n" + 
-              "email: " + user.email + "\n" + 
-              "password: " + user.password + "\n");
+        .json({name: user.name, 
+              email: user.email});
     }
     else {
         res.status(404)
@@ -44,6 +46,38 @@ export class UserRouter {
     }
   }
 
+  /**
+   * CREATE one User
+   */
+  public createOne(req: Request, res: Response, next: NextFunction) {
+    let fs = require('fs');
+    let userName : string = req.body.name;
+    let userEmail : string = req.body.email;
+    let userPassword : string = req.body.password;
+    let user = Users.find (user => user.name === userName);
+    if (!user) {
+      res.status(200)
+      Users.push({id: Users.length + 1,
+          name: userName,
+          email: userEmail,
+          password: userPassword}
+          );
+      fs.writeFile('src/users.json', JSON.stringify(Users, null, ' '), (err) => { 
+          if (err) throw err;
+      });
+      res.json({
+        message: 'Sucess',
+        name: userName,
+        email: userEmail
+      });
+    }
+    else {
+      res.send({
+        message: 'User already exists'
+      });
+    }
+    
+  }
 
   /**
    * Take each handler, and attach to one of the Express.Router's
@@ -52,6 +86,7 @@ export class UserRouter {
   init() {
     this.router.get('/', this.getAll);
     this.router.get('/:id', this.getOne);
+    this.router.post('/', this.createOne);
   }
 
 }
