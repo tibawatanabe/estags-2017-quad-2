@@ -76,17 +76,76 @@ export class UserRouter {
         message: 'User already exists'
       });
     }
-    
   }
+
+    /**
+   * Authenticate one User
+   */
+  public authenticateOne (req: Request, res: Response, next: NextFunction) {
+    let user = Users.find (user => user.name === req.body.name);
+    if (!user) {
+      //if user is not founde
+      res.json( {
+        message: 'Authentication failed. User not found.'
+      });
+    }
+    else if (user.password != req.body.password) {
+      //if user exist and password doesn't matches
+        res.json({
+          message: 'Authentication failed. Wrong password.'
+        });
+      }
+    else {
+      //if user and password are correct
+      //create a token
+      
+      let token = jwt.sign({
+        name: user.name,
+        id: user.id,
+        email: user.email
+      }, 'chaveSecreta');
+
+      res.json({
+        message: 'Authentication succed.',
+        name: user.name,
+        email: user.email,
+        token: token
+      });
+    }
+  }
+
+  /**
+   * Verify if Token is correct
+   */
+  public verifyToken (req: Request, res: Response, next: NextFunction) {
+    let token = req.headers['token'];
+    if (token) {
+      jwt.verify(token, 'chaveSecreta', (err, decoded) => {
+        if (err) {
+          return res.json({message: 'Failed to authenticate token.'});
+        }
+        else {
+          next(); 
+        }
+      });
+    }
+    else {
+      res.status(403).json({
+        message: 'No token provided.'
+      });
+    }
+  }
+
 
   /**
    * Take each handler, and attach to one of the Express.Router's
    * endpoints.
    */
   init() {
-    this.router.get('/', this.getAll);
-    this.router.get('/:id', this.getOne);
+    this.router.get('/', this.verifyToken,this.getAll);
+    this.router.get('/:id', this.verifyToken, this.getOne);
     this.router.post('/', this.createOne);
+    this.router.post('/authenticate', this.authenticateOne);
   }
 
 }
