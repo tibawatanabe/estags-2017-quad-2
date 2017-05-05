@@ -1,13 +1,13 @@
-<div class="container">
+<div class="container" [hidden]="submitted">
   <h2>Faça seu login:</h2>
-  <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+  <form (ngSubmit)="onSubmit(username.value, password.value)" #loginForm="ngForm">
     <div class="form-group">
       <label for="username">Usuário</label>
       <input type="text" class="form-control" placeholder="digite seu usuário" id="username"
              required
-             [(ngModel)]="model.name" name="user"
-             #user="ngModel">
-      <div [hidden]="user.valid || user.pristine"
+             [(ngModel)]="model.username" name="username"
+             #username="ngModel">
+      <div [hidden]="username.valid || username.pristine"
              class="alert alert-danger">
           É necessário inserir um usuário
       </div>
@@ -26,12 +26,8 @@
     </div>
 
     <button type="submit" class="btn btn-success" [disabled]="!loginForm.form.valid"
-            (click)="login(user.value, password.value); loginForm.reset()">
+            >
             Log in
     </button>
   </form>
-
-  <div>
-    {{token}}
-  </div>
 </div>

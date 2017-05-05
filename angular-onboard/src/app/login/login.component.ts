@@ -25,8 +25,15 @@ export class LoginComponent implements OnInit {
   
   model = new UserComponent(0, "", "", "");
   submitted = false;
-  onSubmit() { 
+  onSubmit(usuario: string, senha: string) { 
     this.submitted = true;
+
+    this.usuario = usuario;
+    this.senha = senha;
+
+    this._taqtileApiService.login(usuario, senha).subscribe(response => {this.token = response.data.token});
+    
+    this._userInfoService.setToken(this.token);
   }
 
   login(usuario: string, senha: string) {
