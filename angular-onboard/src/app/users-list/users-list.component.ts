@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { Router } from '@angular/router';
 
 import { TaqtileApiService } from '../taqtile-api.service';
 
@@ -13,7 +14,10 @@ import 'rxjs/add/operator/do';
 export class UsersListComponent implements OnInit {
   users;
 
-  constructor(private _taqtileApiService: TaqtileApiService) {}
+  constructor(
+    private _taqtileApiService: TaqtileApiService,
+    private router: Router,
+  ) {}
 
   ngOnInit() {
     this._taqtileApiService.getUsers()
@@ -23,6 +27,10 @@ export class UsersListComponent implements OnInit {
                       // users => this.users = users,
                       response => this.users = response.data,
                       error => console.log('Error getting users'));
+  }
+
+  gotoDetails(id: number) {
+    this.router.navigate(['/user-details', id]);
   }
 
 }

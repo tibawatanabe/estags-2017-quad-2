@@ -12,6 +12,7 @@ import { UsersListComponent } from './users-list/users-list.component';
 import { TaqtileApiService } from './taqtile-api.service';
 import { UserInfoService } from './user-info.service';
 import { routing } from './app.routes';
+import { UserDetailsComponent } from './user-details/user-details.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { routing } from './app.routes';
     HeaderComponent,
     LoginComponent,
     UsersListComponent,
-    UserComponent
+    UserComponent,
+    UserDetailsComponent
   ],
   imports: [
     BrowserModule,
