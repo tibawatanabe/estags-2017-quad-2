@@ -3,11 +3,16 @@ import { Http, Headers, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
+import { UserInfoService } from './user-info.service';
+
 @Injectable()
 export class TaqtileApiService {
   baseUrl: string;
 
-  constructor(private http: Http) {
+  constructor(
+    private http: Http,
+    private _userInfoService: UserInfoService
+  ) {
     this.baseUrl = 'https://tq-template-node.herokuapp.com';
   }
 
@@ -17,10 +22,9 @@ export class TaqtileApiService {
                     .map(response => response.json());
   }
 
-  fetchUsers(): Observable<any> {
+  getUsers(): Observable<any> {
     let headers = new Headers();
-
-    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6MX0sImlhdCI6MTQ5MzkxMjcwMiwiZXhwIjoxNDkzOTE2MzAyfQ.v5CiDcINey5X95KwUmm4qee5z7Az3vtlrvF4u35PsJY');
+    headers.append('Authorization', this._userInfoService.getToken());
 
     let params = new URLSearchParams();
 

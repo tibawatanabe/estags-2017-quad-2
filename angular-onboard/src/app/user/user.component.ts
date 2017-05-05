@@ -6,13 +6,9 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
+  @Input() user;
 
-  constructor(
-    public id: number,
-    public name: string,
-    public email: string,
-    public type: string
-  ) { }
+  constructor() { }
 
   ngOnInit() {
   }
