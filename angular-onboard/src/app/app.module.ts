@@ -13,6 +13,7 @@ import { TaqtileApiService } from './taqtile-api.service';
 import { UserInfoService } from './user-info.service';
 import { routing } from './app.routes';
 import { UserDetailsComponent } from './user-details/user-details.component';
+import { CreateUserComponent } from './create-user/create-user.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { UserDetailsComponent } from './user-details/user-details.component';
     LoginComponent,
     UsersListComponent,
     UserComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    CreateUserComponent
   ],
   imports: [
     BrowserModule,

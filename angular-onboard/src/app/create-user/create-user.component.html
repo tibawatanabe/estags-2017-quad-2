@@ -1,0 +1,59 @@
+<div class="container">
+  {{successMessage}}
+  <h2>Crie um novo usuário:</h2>
+  <form (ngSubmit)="onSubmit(name.value, email.value, password.value, type.value); createForm.reset()" #createForm="ngForm">
+    <div class="form-group">
+      <label for="name">Nome</label>
+      <input type="text" class="form-control" placeholder="digite seu nome" id="name"
+             required
+             [(ngModel)]="campoVazioNome" name="name"
+             #name="ngModel">
+      <div [hidden]="name.valid || name.pristine"
+             class="alert alert-danger">
+          É necessário inserir um nome
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" placeholder="digite seu email" id="email"
+             required
+             [(ngModel)]="campoVazioEmail" name="email"
+             #email="ngModel">
+      <div [hidden]="email.valid || email.pristine"
+             class="alert alert-danger">
+          É necessário inserir um email válido
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Senha</label>
+      <input type="password" class="form-control" placeholder="digite sua senha" id="passoword"
+             required
+             [(ngModel)]="campoVazioSenha" name="password"
+             #password="ngModel">
+      <div [hidden]="password.valid || password.pristine"
+             class="alert alert-danger">
+          É necessário inserir uma senha
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="type">Tipo de usuário</label>
+      <select class="form-control" id="type"
+              required
+              [ngModel]="types[0]" name="type"
+              #type="ngModel">
+        <option *ngFor="let type of types" [value]="type">{{type}}</option>
+      </select>
+      <div [hidden]="type.valid || type.pristine"
+             class="alert alert-danger">
+          É necessário inserir um tipo
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-success" [disabled]="!createForm.form.valid">
+            Log in
+    </button>
+  </form>
+</div>
