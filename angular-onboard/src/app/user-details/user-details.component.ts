@@ -15,7 +15,7 @@ export class UserDetailsComponent implements OnInit {
   user;
 
   constructor(
-    private _taqtileApiService: TaqtileApiService,
+    private taqtileApiService: TaqtileApiService,
     private route: ActivatedRoute,
     private location: Location
   ) { }
@@ -23,7 +23,7 @@ export class UserDetailsComponent implements OnInit {
   ngOnInit(): void {
     
     this.route.params
-      .switchMap((params: Params) => this._taqtileApiService.getUser(params['id']))
+      .switchMap((params: Params) => this.taqtileApiService.getUser(params['id']))
       .subscribe(response => this.user = response.data,
                  error => console.log('Error getting user details'));
   }

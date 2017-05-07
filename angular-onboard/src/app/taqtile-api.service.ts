@@ -11,7 +11,7 @@ export class TaqtileApiService {
 
   constructor(
     private http: Http,
-    private _userInfoService: UserInfoService
+    private userInfoService: UserInfoService
   ) {
     this.baseUrl = 'https://tq-template-node.herokuapp.com';
   }
@@ -24,7 +24,7 @@ export class TaqtileApiService {
 
   getUsers(): Observable<any> {
     let headers = new Headers();
-    headers.append('Authorization', this._userInfoService.getToken());
+    headers.append('Authorization', this.userInfoService.getToken());
 
     let params = new URLSearchParams();
 
@@ -36,7 +36,7 @@ export class TaqtileApiService {
 
   getUser(id: string): Observable<any> {
     let headers = new Headers();
-    headers.append('Authorization', this._userInfoService.getToken());
+    headers.append('Authorization', this.userInfoService.getToken());
 
     return this.http.get(`${this.baseUrl}/user/${id}`, {headers})
                     .map(response => response.json());
@@ -44,7 +44,7 @@ export class TaqtileApiService {
 
   createUser(name: string, email: string, password: string, type: string) {
     let headers = new Headers();
-    headers.append('Authorization', this._userInfoService.getToken());
+    headers.append('Authorization', this.userInfoService.getToken());
 
     let body = { name, email, password, type };
 

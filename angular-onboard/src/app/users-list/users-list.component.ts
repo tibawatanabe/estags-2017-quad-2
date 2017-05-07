@@ -15,12 +15,12 @@ export class UsersListComponent implements OnInit {
   users;
 
   constructor(
-    private _taqtileApiService: TaqtileApiService,
+    private taqtileApiService: TaqtileApiService,
     private router: Router,
   ) {}
 
   ngOnInit() {
-    this._taqtileApiService.getUsers()
+    this.taqtileApiService.getUsers()
                     // .do(console.log)
                     // .map(response => response.data)
                     .subscribe(
