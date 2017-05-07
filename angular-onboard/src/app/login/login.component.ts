@@ -28,8 +28,7 @@ export class LoginComponent implements OnInit {
   onSubmit(user: string, password: string) {
     this.submitted = true;
 
-    this.taqtileApiService
-      .login(user, password)
+    this.taqtileApiService.login(user, password)
       .map(response => response.data.token)
       .subscribe(
         token => this.userInfoService.setToken(token),

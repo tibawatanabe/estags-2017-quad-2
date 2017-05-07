@@ -28,7 +28,7 @@ export class TaqtileApiService {
 
     let params = new URLSearchParams();
 
-    params.append('pagination', JSON.stringify({ window: 10, page: 1 }));
+    params.append('pagination', JSON.stringify({ window: 50, page: 1 }));
 
     return this.http.get(`${this.baseUrl}/users`, { params, headers })
                     .map(response => response.json());
@@ -49,6 +49,16 @@ export class TaqtileApiService {
     let body = { name, email, password, type };
 
     return this.http.post(`${this.baseUrl}/user`, body, {headers})
+                    .map(response => response.json());
+  }
+
+  edit(name: string, email: string, id: string) {
+    let headers = new Headers();
+    headers.append('Authorization', this.userInfoService.getToken());
+
+    let body = { name, email };
+
+    return this.http.put(`${this.baseUrl}/user/${id}`, body, {headers})
                     .map(response => response.json());
   }
 
