@@ -11,9 +11,11 @@ import { UserInfoService } from '../user-info.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  usuario: string;
-  senha: string;
-  token: string;
+  token = null;
+  campoVazioUser = null;
+  campoVazioPassword = null;
+  submitted = false;
+  errorMessage: string;
 
   constructor(
     private _taqtileApiService: TaqtileApiService,
@@ -22,26 +24,12 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
   }
-  
-  model = new UserComponent(0, "", "", "");
-  submitted = false;
-  onSubmit(usuario: string, senha: string) { 
+
+  onSubmit(usuario: string, senha: string) {
+    this._taqtileApiService.login(usuario, senha).subscribe(response => {
+                                                            this.token = response.data.token;
+                                                            this._userInfoService.setToken(this.token);},
+                                                            error => console.log('Error logging this user'));
     this.submitted = true;
-
-    this.usuario = usuario;
-    this.senha = senha;
-
-    this._taqtileApiService.login(usuario, senha).subscribe(response => {this.token = response.data.token});
-    
-    this._userInfoService.setToken(this.token);
-  }
-
-  login(usuario: string, senha: string) {
-    this.usuario = usuario;
-    this.senha = senha;
-
-    this._taqtileApiService.login(usuario, senha).subscribe(response => {this.token = response.data.token});
-    
-    this._userInfoService.setToken(this.token);
   }
 }

@@ -1,12 +1,12 @@
 <header id="header">
   <div class="header-text">
     <h1>Taqtile Onboard</h1>
-    <span class="header-nav" [hidden]="showOptions">
-      <a href="">login</a>
+    <nav class="header-nav" [hidden]="showOptions">
+      <a routerLink="login">login</a>
       <span class="divider">|</span>
-      <a href="">lista de usuarios</a>
+      <a routerLink="users-list">lista de usuarios</a>
       <span class="divider">|</span>
       <a href="">criar usuario</a>
-    </span>
+    </nav>
   </div>
 </header>
