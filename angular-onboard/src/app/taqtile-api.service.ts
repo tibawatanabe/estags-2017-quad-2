@@ -34,4 +34,12 @@ export class TaqtileApiService {
                     .map(response => response.json());
   }
 
+  getUser(id: string): Observable<any> {
+    let headers = new Headers();
+    headers.append('Authorization', this._userInfoService.getToken());
+
+    return this.http.get(`${this.baseUrl}/user/${id}`, {headers})
+                    .map(response => response.json())
+  }
+
 }

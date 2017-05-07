@@ -1,7 +1,8 @@
 <div class="main-content">
   <ol *ngIf="users">
     <li *ngFor="let user of users" class="user-list">
-      <user class="user-block" [user]="user"></user>
+      <!--<user class="user-block" [user]="user"></user>-->
+      <a><h3 (click)="gotoDetails(user.id)">{{user.name}}</h3></a>
     </li>
   </ol>
   <div class="nav">
