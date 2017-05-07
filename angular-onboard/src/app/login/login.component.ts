@@ -25,14 +25,37 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit(user: string, password: string) {
-    this.submitted = true;
-
+  login(user: string, password: string) {
     this.taqtileApiService.login(user, password)
       .map(response => response.data.token)
       .subscribe(
-        token => this.userInfoService.setToken(token),
-        error => console.log('Error logging this user')
+        token => {
+          this.userInfoService.setToken(token);
+          this.submitted = true;
+        },
+        error => {
+          console.log('Error logging this user');
+          this.errorLogin(error.status);
+        }
       );
+  }
+
+  errorLogin(statusCode: number) {
+    this.submitted = false;
+
+    switch(statusCode){
+      case 401: {
+        this.errorMessage = "Usuário ou senha inválidos. Tente novamente!";
+        break;
+      }
+      case 0: {
+        this.errorMessage = "Houve um problema na conexão. Verifique seu acesso à internet";
+        break;
+      }
+      default: {
+        this.errorMessage = "Ocorreu algum problema ao fazer seu login. Tente novamente!";
+        break;
+      }
+    }
   }
 }

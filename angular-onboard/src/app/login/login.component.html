@@ -1,7 +1,6 @@
 <div class="container" [hidden]="submitted">
   <h2>Faça seu login:</h2>
-  <form (ngSubmit)="onSubmit(username.value, password.value); loginForm.reset()" #loginForm="ngForm">
-    <p>{{errorMessage}}</p>
+  <form (ngSubmit)="login(username.value, password.value); loginForm.reset()" #loginForm="ngForm">
     <div class="form-group">
       <label for="username">Usuário</label>
       <input type="text" class="form-control" placeholder="digite seu usuário" id="username"
@@ -25,6 +24,8 @@
           É necessário digitar uma senha
       </div>
     </div>
+
+    <p>{{errorMessage}}</p>
 
     <button type="submit" class="btn btn-success" [disabled]="!loginForm.form.valid">
             Log in
