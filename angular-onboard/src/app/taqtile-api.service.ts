@@ -39,7 +39,17 @@ export class TaqtileApiService {
     headers.append('Authorization', this._userInfoService.getToken());
 
     return this.http.get(`${this.baseUrl}/user/${id}`, {headers})
-                    .map(response => response.json())
+                    .map(response => response.json());
+  }
+
+  createUser(name: string, email: string, password: string, type: string) {
+    let headers = new Headers();
+    headers.append('Authorization', this._userInfoService.getToken());
+
+    let body = { name, email, password, type };
+
+    return this.http.post(`${this.baseUrl}/user`, body, {headers})
+                    .map(response => response.json());
   }
 
 }
