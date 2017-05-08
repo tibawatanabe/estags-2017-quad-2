@@ -38,7 +38,6 @@
                                 </state>
                                 <connections>
                                     <action selector="loginPressed:" destination="gri-6x-akS" eventType="touchUpInside" id="dFF-Gl-iF0"/>
-                                    <segue destination="2Ht-p4-9TM" kind="show" id="NEQ-zw-U0T"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="USERNAME" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eWw-TH-HXh">
@@ -62,6 +61,7 @@
                     <connections>
                         <outlet property="passwordField" destination="Me8-Z9-yps" id="qAE-QF-A0D"/>
                         <outlet property="usernameField" destination="eWw-TH-HXh" id="ZuK-kC-yTN"/>
+                        <segue destination="2Ht-p4-9TM" kind="show" identifier="UsersTableViewController" id="Q1T-ab-cKe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WK6-wN-IR9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -72,16 +72,16 @@
         <scene sceneID="Nsy-he-x0F">
             <objects>
                 <tableViewController title="User List" id="2Ht-p4-9TM" customClass="UsersTableViewController" customModule="ProjetoBasico" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="Wyh-yf-9DD">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="75" sectionHeaderHeight="18" sectionFooterHeight="18" id="Wyh-yf-9DD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="UserCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" id="D2D-Af-BK8">
-                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="UserCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" rowHeight="75" id="D2D-Af-BK8">
+                                <rect key="frame" x="0.0" y="56" width="375" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="D2D-Af-BK8" id="aqf-az-OC6">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="74"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -94,7 +94,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="His-x5-hEi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2031" y="-645"/>
+            <point key="canvasLocation" x="2029.5999999999999" y="-645.42728635682158"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wUZ-S2-ifb">

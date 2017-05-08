@@ -20,6 +20,8 @@ class User : Mappable{
     var createdAt: String = ""
     var updatedAt: String = ""
     
+     required init?(map: Map) {}
+    
     init(user: String, password: String) {
         self.user = user
         self.password = password
@@ -32,21 +34,6 @@ class User : Mappable{
         ]
         return parameters
     }
-
-    func setUser(user: String){
-        self.user = user
-    }
-    func setPassword(password: String){
-        self.password = password
-    }
-    func getUser() -> String{
-        return self.user
-    }
-    func getPassword() -> String{
-        return self.password
-    }
-    
-    required init?(map: Map) {}
     
     func mapping(map: Map) {
         user <- map["user"]
