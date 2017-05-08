@@ -1,8 +1,7 @@
-package com.example.myfirstapp.providers.error;
+package com.example.myfirstapp.providers.signIn.error;
 
 import com.example.myfirstapp.models.signIn.error.SignInRemoteError;
-import com.example.myfirstapp.providers.RetrofitHelper;
-import com.example.myfirstapp.providers.SignInProvider;
+import com.example.myfirstapp.providers.signIn.SignInProvider;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
@@ -15,9 +14,9 @@ import retrofit2.Response;
  * Created by taqtile on 5/4/17.
  */
 
-public class ErrorUtils {
+public class ErrorParser {
 
-    public static SignInRemoteError parseError(Response<?> response){
+    public static SignInRemoteError parse(Response<?> response){
 
         Converter<ResponseBody, SignInRemoteError> converter = SignInProvider.getRetrofit().
                 responseBodyConverter(SignInRemoteError.class, new Annotation[0]);

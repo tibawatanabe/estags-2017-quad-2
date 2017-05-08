@@ -1,8 +1,9 @@
-package com.example.myfirstapp.providers;
+package com.example.myfirstapp.providers.signIn;
 
 
 import com.example.myfirstapp.models.signIn.request.SignInRemoteRequest;
 import com.example.myfirstapp.models.signIn.response.SignInRemoteResponse;
+import com.example.myfirstapp.providers.RetrofitHelper;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,7 +26,7 @@ public class SignInProvider {
     retrofit = RetrofitHelper.buildRetrofit();
     services = retrofit.create(SignInServices.class);
 
-    Call<SignInRemoteResponse> call = services.signIn(signInRemoteRequest);
+    Call<SignInRemoteResponse> call = services.signIn(signInRemoteRequest); //singIn é que diferencia.
     call.enqueue(signInRemoteResponseCallBack);
 
 

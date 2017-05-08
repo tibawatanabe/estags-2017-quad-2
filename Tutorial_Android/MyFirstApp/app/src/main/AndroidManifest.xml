@@ -18,15 +18,28 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.DisplayMessageActivity"
+        <activity
+            android:name=".activities.DisplayMessageActivity"
             android:parentActivityName=".activities.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.MainActivity" />
         </activity>
-
-        <activity android:name=".activities.SignInActivity"
-            android:label="Login"/>
+        <activity
+            android:name=".activities.SignInActivity"
+            android:label="Login"
+            android:parentActivityName=".activities.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.MainActivity" />
+        </activity>
+        <activity android:name=".activities.ListUsersActivity"
+            android:parentActivityName=".activities.SignInActivity"
+            android:label="Lista de usuários">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.SignInActivity" />
+        </activity>
     </application>
 
 </manifest>

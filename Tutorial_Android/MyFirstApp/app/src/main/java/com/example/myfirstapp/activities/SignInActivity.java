@@ -1,5 +1,6 @@
 package com.example.myfirstapp.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -10,11 +11,10 @@ import android.widget.Toast;
 
 import com.example.myfirstapp.R;
 import com.example.myfirstapp.models.signIn.error.SignInRemoteError;
-import com.example.myfirstapp.models.signIn.error.SignInRemoteErrors;
 import com.example.myfirstapp.models.signIn.request.SignInRemoteRequest;
 import com.example.myfirstapp.models.signIn.response.SignInRemoteResponse;
-import com.example.myfirstapp.providers.SignInProvider;
-import com.example.myfirstapp.providers.error.ErrorUtils;
+import com.example.myfirstapp.providers.signIn.SignInProvider;
+import com.example.myfirstapp.providers.signIn.error.ErrorParser;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,6 +30,8 @@ public class SignInActivity extends AppCompatActivity {
     private EditText passwordEditText;
     private Button loginButton;
     private SignInProvider signInProvider;
+
+    public static String USER_EXTRA = "com.example.myfirstapp.USER";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -69,7 +71,7 @@ public class SignInActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     onLoginSuccess(response.body());
                 } else {
-                    SignInRemoteError error = ErrorUtils.parseError(response);
+                    SignInRemoteError error = ErrorParser.parse(response);
                     onLoginError(error);
                 }
 
@@ -81,7 +83,6 @@ public class SignInActivity extends AppCompatActivity {
             }
         });
 
-        Toast.makeText(this, email, Toast.LENGTH_LONG).show();
     }
 
     private void onLoginSuccess(SignInRemoteResponse signInRemoteResponse){
@@ -91,6 +92,9 @@ public class SignInActivity extends AppCompatActivity {
             name = signInRemoteResponse.getData().getUser().getName();
         }
         Toast.makeText(this, "Bem-vindo(a), "+ name +"!",Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(this, ListUsersActivity.class);
+        intent.putExtra(USER_EXTRA, signInRemoteResponse.getData().getToken());
+        startActivity(intent);
     }
 
     private void onLoginFailure(){
