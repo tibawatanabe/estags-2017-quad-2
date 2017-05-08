@@ -38,40 +38,26 @@ class LoginViewController: UIViewController {
         let par = userAtual.toRequestParams()
         
         Alamofire.request("https://tq-template-node.herokuapp.com/authenticate", method: .post, parameters: par, encoding: JSONEncoding.default).responseJSON { response in
-           
-            //FALTA CASO ERRO DE CONEXAO
-//            switch response.result {
-//            case let .success(json):
-//                print(json)
-//            case let .failure(error):
-//                print(error)
-//            }
             
-            if let JSON = response.result.value {
+            switch response.result {
+            case let .success(JSON):
                 if let data = (JSON as! NSDictionary).value(forKey: "data"){
+                    let userResponse = UserResponse(JSONString: String(data: response.data!, encoding: String.Encoding.utf8)!)
                     self.displayMessage(msg: "Login ok!")
-                    let token = (data as! NSDictionary).value(forKey: "token")!
+                    //                  let token = (data as! NSDictionary).value(forKey: "token")!
+                    let token = userResponse?.token
                     UserDefaults.standard.set(token, forKey: "token")
                 }
                 else if let errors = (JSON as! NSDictionary).value(forKey: "errors"){
-                    let errorMsg = (errors as! NSArray).firstObject
                     let errorResponse = ErrorResponse(JSONString: String(data: response.data!, encoding: String.Encoding.utf8)!)
                     self.displayMessage(msg: (errorResponse?.errors.first?.message)!)
                 }
+
+            case let .failure(error):
+                self.displayMessage(msg: "Please check your connection")
             }
-            
         }
-    
-        
-//        if(username == "" || password == ""){
-//            displayMessage(msg: "Please fill in all required fields")
-//        }
-//        else if (username == "pypasquao" && password == "1234"){
-//            print("Ok!")
-//        }
-//        else {
-//            displayMessage(msg: "Username and password do not match")
-//        }
+
     }
     func displayMessage(msg: String){
         let myAlert = UIAlertController(title: "Alert", message: msg, preferredStyle: UIAlertControllerStyle.alert)
