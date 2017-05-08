@@ -82,5 +82,23 @@ class UsersTableViewController: UITableViewController {
         cell.textLabel?.text = users[indexPath.row].name
         return cell
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "ShowUser"{
+            
+            let userVC = segue.destination as? DetalUserViewController
+            
+            guard let cell = sender as? UITableViewCell,
+                let indexPath = tableView.indexPath(for: cell) else{
+                    return
+            }
+            
+            userVC?.user = users[indexPath.row]
+            
+        
+        }
+        
+    }
 
 }

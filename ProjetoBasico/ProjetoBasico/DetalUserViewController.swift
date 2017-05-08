@@ -16,10 +16,19 @@ class DetalUserViewController: UIViewController {
     @IBOutlet weak var UserCreatedAt: UITextField!
     @IBOutlet weak var UserUpdatedAt: UITextField!
     
+    var user: User?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        if let u = user{
+            UserName.text = u.name
+            UserID.text = String(u.id)
+            UserEmail.text = u.email
+            UserCreatedAt.text = u.createdAt
+            UserUpdatedAt.text = u.updatedAt
+        }
+    
     }
 
 }
