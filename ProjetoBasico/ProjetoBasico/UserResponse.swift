@@ -17,6 +17,7 @@ class UserResponse: Mappable{
     var type: String = ""
     var createdAt: String = ""
     var updatedAt: String = ""
+    var a: String = ""
     
     required init?(map: Map) {}
     
