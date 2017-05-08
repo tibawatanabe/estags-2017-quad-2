@@ -6,6 +6,7 @@ import 'rxjs/add/operator/switchMap';
 
 import { TaqtileApiService } from '../taqtile-api.service';
 import { UserInfoService } from '../user-info.service';
+import { MessagesService } from '../messages.service';
 
 @Component({
   selector: 'user-details',
@@ -20,6 +21,7 @@ export class UserDetailsComponent implements OnInit {
   constructor(
     private taqtileApiService: TaqtileApiService,
     private userInfoService: UserInfoService,
+    private messagesService: MessagesService,
     private route: ActivatedRoute,
     private router: Router,
     private location: Location
@@ -28,6 +30,12 @@ export class UserDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     this.getUser(this.id);
+
+    this.messagesService.flashMessage$.subscribe((message) => {
+      if (message.id == 'users-list') {
+        this.errorMessage = message.message;
+      }
+    })
   }
 
   getUser(id: string) {
@@ -36,29 +44,9 @@ export class UserDetailsComponent implements OnInit {
                               response => this.user = response.data,
                               error => {
                                 console.log('Error getting user details');
-                                this.errorDetails(error.status);
+                                this.messagesService.setMessage('user-details', error.status);
                               }
                             );
-  }
-
-  errorDetails(statusCode: number) {
-    switch(statusCode){
-      case 401: {
-        this.errorMessage = "Sua seção expirou. Faça login novamente!";
-        this.userInfoService.logout();
-        this.router.navigate(['/login']);
-        this.userInfoService.sendMessage('login', this.errorMessage);
-        break;
-      }
-      case 0: {
-        this.errorMessage = "Houve um problema na conexão. Verifique seu acesso à internet";
-        break;
-      }
-      default: {
-        this.errorMessage = "Ocorreu algum problema ao mostrar os detalhes do usuário. Tente novamente!";
-        break;
-      }
-    }
   }
 
   goBack(): void {

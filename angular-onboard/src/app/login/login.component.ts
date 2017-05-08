@@ -4,6 +4,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { UserComponent } from '../user/user.component';
 import { TaqtileApiService } from '../taqtile-api.service';
 import { UserInfoService } from '../user-info.service';
+import { MessagesService } from '../messages.service';
 
 @Component({
   selector: 'login',
@@ -21,6 +22,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private taqtileApiService: TaqtileApiService,
     private userInfoService: UserInfoService,
+    private messagesService: MessagesService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
@@ -29,7 +31,7 @@ export class LoginComponent implements OnInit {
     // this.loginNeeded = this.route.snapshot.params['error'];
     // this.route.params.switchMap((params: Params) => this.loginNeeded = params['error']);
 
-    this.userInfoService.flashMessage$.subscribe((message) => {
+    this.messagesService.flashMessage$.subscribe((message) => {
       if (message.id == 'login') {
         this.loginNeeded = message.message;
       }

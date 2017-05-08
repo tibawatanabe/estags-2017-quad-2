@@ -26,11 +26,11 @@
           </div>
         </div>
 
-        <a (click)="goBack()" class="btn btn-success">Cancelar</a>
+        <a (click)="goBack()" class="btn btn-danger">Cancelar</a>
         <button class="btn btn-success" [disabled]="!editForm.form.valid">Salvar</button>
       </form>
   </div>
   <div *ngIf="!user">
     <p>{{errorMessage}}</p>
-    <a (click)="getUser(id)" class="btn btn-success">Recarregar</a>
+    <a (click)="getUser(id)" class="btn btn-default">Recarregar</a>
   </div>

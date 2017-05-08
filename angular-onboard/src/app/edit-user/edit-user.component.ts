@@ -6,9 +6,10 @@ import 'rxjs/add/operator/switchMap';
 
 import { TaqtileApiService } from '../taqtile-api.service';
 import { UserInfoService } from '../user-info.service';
+import { MessagesService } from '../messages.service';
 
 @Component({
-  selector: 'app-edit-user',
+  selector: 'edit-user',
   templateUrl: './edit-user.component.html',
   styleUrls: ['./edit-user.component.css']
 })
@@ -20,6 +21,7 @@ export class EditUserComponent implements OnInit {
   constructor(
     private taqtileApiService: TaqtileApiService,
     private userInfoService: UserInfoService,
+    private messagesService: MessagesService,
     private route: ActivatedRoute,
     private router: Router,
     private location: Location
@@ -28,6 +30,12 @@ export class EditUserComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
     this.getUser(this.id);
+
+    this.messagesService.flashMessage$.subscribe((message) => {
+      if (message.id == 'edit-user') {
+        this.errorMessage = message.message;
+      }
+    })
   }
 
   getUser(id: string) {
@@ -36,29 +44,9 @@ export class EditUserComponent implements OnInit {
                               response => this.user = response.data,
                               error => {
                                 console.log('Error getting user details');
-                                this.errorEdit(error.status);
+                                this.messagesService.setMessage('edit-user', error.status);
                               }
                             );
-  }
-
-  errorEdit(statusCode: number) {
-    switch(statusCode){
-      case 401: {
-        this.errorMessage = "Sua seção expirou. Faça login novamente!";
-        this.userInfoService.logout();
-        this.router.navigate(['/login']);
-        this.userInfoService.sendMessage('login', this.errorMessage);
-        break;
-      }
-      case 0: {
-        this.errorMessage = "Houve um problema na conexão. Verifique seu acesso à internet";
-        break;
-      }
-      default: {
-        this.errorMessage = "Ocorreu algum problema ao listar os usuários. Tente novamente!";
-        break;
-      }
-    }
   }
 
   goBack() {

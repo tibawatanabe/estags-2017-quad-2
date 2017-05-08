@@ -3,6 +3,7 @@ import { CanActivate, Router } from '@angular/router';
 import { UserInfoService } from './user-info.service';
 import { TaqtileApiService } from './taqtile-api.service';
 import { Observable } from "rxjs/Observable";
+import { MessagesService } from './messages.service';
 
 @Injectable()
 export class LoginGuardService implements CanActivate {
@@ -10,6 +11,7 @@ export class LoginGuardService implements CanActivate {
   constructor (
     private taqtileApiService: TaqtileApiService,
     private userInfoService: UserInfoService,
+    private messagesService: MessagesService,
     private router: Router
   ) { }
 
@@ -18,13 +20,8 @@ export class LoginGuardService implements CanActivate {
       return true;
     }
 
-    this.userInfoService.sendMessage('login', 'Faça login');
+    this.messagesService.sendMessage('login', 'Faça login');
     this.router.navigate(['/login']);
     return false;
   }
-
-  // store the URL so we can redirect after logging in
-  redirectUrl: string;
-
-
 }

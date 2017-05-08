@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import { ReplaySubject} from 'rxjs/ReplaySubject';
 
-
 @Injectable()
 export class UserInfoService {
-  id: string;
-  token: string;
+  id: string = null;
+  token: string = null;
 
-  private flashMessageSource = new ReplaySubject<any>(1);
+  private isLoggedIn = new ReplaySubject<any>(1);
 
-  flashMessage$ = this.flashMessageSource.asObservable();
+  isLoggedIn$ = this.isLoggedIn.asObservable();
 
   setId(id: string) {
     this.id = id;
@@ -21,6 +20,7 @@ export class UserInfoService {
 
   setToken(token: string) {
     this.token = token;
+    this.isLoggedIn.next({token});
   }
 
   getToken() {
@@ -30,10 +30,6 @@ export class UserInfoService {
   logout() {
     this.token = null;
     this.id = null;
+    this.isLoggedIn.next({token: this.token})
   }
-
-  sendMessage(id: string, message: string) {
-    this.flashMessageSource.next({id, message});
-  }
-
 }

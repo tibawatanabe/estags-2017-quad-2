@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { UserInfoService } from '../user-info.service';
 import { TaqtileApiService } from '../taqtile-api.service';
+import { MessagesService } from '../messages.service';
 
 @Component({
   selector: 'home',
@@ -16,11 +17,18 @@ export class HomeComponent implements OnInit {
   constructor(
     private taqtileApiService: TaqtileApiService,
     private userInfoService: UserInfoService,
+    private messagesService: MessagesService,
     private router: Router
   ) { }
 
   ngOnInit() {
     this.getUser();
+
+    this.messagesService.flashMessage$.subscribe((message) => {
+      if (message.id == 'users-list') {
+        this.errorMessage = message.message;
+      }
+    })
   }
 
   getUser() {
@@ -29,29 +37,8 @@ export class HomeComponent implements OnInit {
                                           response => this.user = response.data,
                                           error => {
                                             console.log('Error getting user');
-                                            this.errorHome(error.status);
+                                            this.messagesService.setMessage('home', error.status);
                                           }
                                         );
   }
-
-  errorHome(statusCode: number) {
-    switch(statusCode){
-      case 401: {
-        this.errorMessage = "Sua seção expirou. Faça login novamente!";
-        this.userInfoService.logout();
-        this.router.navigate(['/login']);
-        this.userInfoService.sendMessage('login', this.errorMessage);
-        break;
-      }
-      case 0: {
-        this.errorMessage = "Houve um problema na conexão. Verifique seu acesso à internet";
-        break;
-      }
-      default: {
-        this.errorMessage = "Ocorreu algum problema ao listar os usuários. Tente novamente!";
-        break;
-      }
-    }
-  }
-
 }

@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { TaqtileApiService } from '../taqtile-api.service';
 import { UserInfoService } from '../user-info.service';
+import { MessagesService } from '../messages.service';
 
 @Component({
   selector: 'create-user',
@@ -22,10 +23,16 @@ export class CreateUserComponent implements OnInit {
   constructor(
     private taqtileApiService: TaqtileApiService,
     private userInfoService: UserInfoService,
+    private messagesService: MessagesService,
     private router: Router
   ) { }
 
   ngOnInit() {
+    this.messagesService.flashMessage$.subscribe((message) => {
+      if (message.id == 'create-user') {
+        this.errorMessage = message.message;
+      }
+    })
   }
 
   createUser(name: string, email: string, password: string, type: string) {
@@ -39,29 +46,8 @@ export class CreateUserComponent implements OnInit {
                              error => {
                                this.submitted = false;
                                console.log('Error creating this user');
-                               this.errorCreate(error.status);
+                               this.messagesService.setMessage('create-user', error.status);
                              }
                            );
   }
-
-  errorCreate(statusCode: number) {
-    switch(statusCode){
-      case 401: {
-        this.errorMessage = "Sua seção expirou. Faça login novamente!";
-        this.userInfoService.logout();
-        this.router.navigate(['/login']);
-        this.userInfoService.sendMessage('login', this.errorMessage);
-        break;
-      }
-      case 0: {
-        this.errorMessage = "Houve um problema na conexão. Verifique seu acesso à internet e tente novamente";
-        break;
-      }
-      default: {
-        this.errorMessage = "Ocorreu algum problema ao criar este usuário. Tente novamente!";
-        break;
-      }
-    }
-  }
-
 }
