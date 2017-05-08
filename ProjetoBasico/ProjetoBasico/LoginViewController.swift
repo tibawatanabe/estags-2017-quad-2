@@ -17,7 +17,9 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        usernameField.text = "admin@taqtile.com"
+        passwordField.text = "1111"
     }
     @IBAction func loginPressed(_ sender: AnyObject) -> Void {
         
@@ -30,10 +32,7 @@ class LoginViewController: UIViewController {
             displayMessage(msg: "Please fill in all required fields")
         }
         
-        let userAtual = User()
-        
-        userAtual.setUser(user: user!)
-        userAtual.setPassword(password: password!)
+        let userAtual = User(user: user!, password: password!)
         
         let par = userAtual.toRequestParams()
         
@@ -45,8 +44,10 @@ class LoginViewController: UIViewController {
                     let userResponse = UserResponse(JSONString: String(data: response.data!, encoding: String.Encoding.utf8)!)
                     self.displayMessage(msg: "Login ok!")
                     //                  let token = (data as! NSDictionary).value(forKey: "token")!
-                    let token = userResponse?.token
-                    UserDefaults.standard.set(token, forKey: "token")
+                    
+                    if let token = userResponse?.token{
+                        UserDefaults.standard.set(token, forKey: "user_auth_token")
+                    }
                 }
                 else if let errors = (JSON as! NSDictionary).value(forKey: "errors"){
                     let errorResponse = ErrorResponse(JSONString: String(data: response.data!, encoding: String.Encoding.utf8)!)
