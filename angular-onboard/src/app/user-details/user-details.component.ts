@@ -54,7 +54,7 @@ export class UserDetailsComponent implements OnInit {
   }
 
   gotoList() {
-    this.router.navigate(['users-list']);
+    this.router.navigate(['users-list', 1]);
   }
 
   gotoEdit(id: number): void {
