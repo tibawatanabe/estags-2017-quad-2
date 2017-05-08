@@ -6,7 +6,6 @@ import { Observable } from "rxjs/Observable";
 
 @Injectable()
 export class LoginGuardService implements CanActivate {
-  isLogged = false;
 
   constructor (
     private taqtileApiService: TaqtileApiService,

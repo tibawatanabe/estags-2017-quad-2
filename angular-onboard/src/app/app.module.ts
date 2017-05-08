@@ -17,6 +17,8 @@ import { CreateUserComponent } from './create-user/create-user.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { LoginGuardService } from './login-guard.service';
 import { LoginPipe } from './login.pipe';
+import { HomeComponent } from './home/home.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +29,8 @@ import { LoginPipe } from './login.pipe';
     UserDetailsComponent,
     CreateUserComponent,
     EditUserComponent,
-    LoginPipe
+    LoginPipe,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

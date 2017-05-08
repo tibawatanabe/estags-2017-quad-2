@@ -8,7 +8,6 @@ import { UserInfoService } from '../user-info.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  showOptions = true;
   isLoggedIn = true;
 
   constructor(private userInfoService: UserInfoService) { }
@@ -16,6 +15,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
-  
-
+  logout() {
+    this.userInfoService.logout();
+  }
 }

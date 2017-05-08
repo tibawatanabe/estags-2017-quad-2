@@ -1,12 +1,14 @@
 <header id="header" class="container">
   <div class="header-text">
-    <h1>Taqtile Onboard</h1>
-    <nav class="header-nav" *ngIf="showOptions">
-      <a routerLink="login">login</a>
+    <h1 routerLink="">Taqtile Onboard</h1>
+    <nav class="header-nav" *ngIf="isLoggedIn">
+      <a routerLink="users-list">lista de usuários</a>
       <span class="divider">|</span>
-      <a routerLink="users-list">{{'Lista de usuarios' | canShow}}</a>
+      <!--<a routerLink="users-list">{{'Lista de usuarios' | canShow}}</a>
+      <span class="divider">|</span>-->
+      <a routerLink="create-user">criar usuário</a>
       <span class="divider">|</span>
-      <a routerLink="create-user">criar usuario</a>
+      <a routerLink="login" (click)="logout()">logout</a>
     </nav>
   </div>
 </header>

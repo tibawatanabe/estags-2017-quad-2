@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { UserComponent } from '../user/user.component';
 import { TaqtileApiService } from '../taqtile-api.service';
@@ -21,7 +21,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private taqtileApiService: TaqtileApiService,
     private userInfoService: UserInfoService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -43,6 +44,7 @@ export class LoginComponent implements OnInit {
           this.userInfoService.setToken(response.token);
           this.userInfoService.setId(response.user.id);
           this.submitted = true;
+          this.router.navigate(['/home']);
         },
         error => {
           console.log('Error logging this user');
