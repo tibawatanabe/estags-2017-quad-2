@@ -1,16 +1,18 @@
-<div class="main-content">
-  <ol *ngIf="users">
-    <li *ngFor="let user of users" class="user-list">
-      <!--<user class="user-block" [user]="user"></user>-->
-      <a (click)="gotoDetails(user.id)">{{user.name}}</a>
-    </li>
-  </ol>
-  <div class="nav">
-    <a href="" class="prev">
-      ‹ Prev
-    </a>
-    <a href="" class="more">
-      More ›
-    </a>
+<div class="container">
+  <div *ngIf="users">
+    <ol>
+      <li *ngFor="let user of users" class="user-list">
+        <!--<user class="user-block" [user]="user"></user>-->
+        <a (click)="gotoDetails(user.id)">{{user.name}}</a>
+      </li>
+    </ol>
+    <div class="nav">
+      <a href="" class="prev">‹ Prev</a>
+      <a href="" class="more">More ›</a>
+    </div>
+  </div>
+  <div *ngIf="!users">
+    <p>{{errorMessage}}</p>
+    <button (click)="getUsers()" class="btn btn-success">Recarregar</button>
   </div>
 </div>

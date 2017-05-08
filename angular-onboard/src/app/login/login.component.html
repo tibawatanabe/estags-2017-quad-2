@@ -1,6 +1,7 @@
 <div class="container" [hidden]="submitted">
+  <p>{{loginNeeded}}</p>
   <h2>Faça seu login:</h2>
-  <form (ngSubmit)="login(username.value, password.value); loginForm.reset()" #loginForm="ngForm">
+  <form (ngSubmit)="login(username.value, password.value)" #loginForm="ngForm">
     <div class="form-group">
       <label for="username">Usuário</label>
       <input type="text" class="form-control" placeholder="digite seu usuário" id="username"

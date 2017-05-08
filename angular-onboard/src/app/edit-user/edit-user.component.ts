@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Location } from '@angular/common';
 
 import 'rxjs/add/operator/switchMap';
 
 import { TaqtileApiService } from '../taqtile-api.service';
+import { UserInfoService } from '../user-info.service';
 
 @Component({
   selector: 'app-edit-user',
@@ -13,20 +14,51 @@ import { TaqtileApiService } from '../taqtile-api.service';
 })
 export class EditUserComponent implements OnInit {
   user;
+  id: string;
+  errorMessage: string;
 
   constructor(
     private taqtileApiService: TaqtileApiService,
+    private userInfoService: UserInfoService,
     private route: ActivatedRoute,
+    private router: Router,
     private location: Location
   ) { }
 
   ngOnInit() {
-    this.route.params
-      .switchMap((params: Params) => this.taqtileApiService.getUser(params['id']))
-      .subscribe(
-        response => this.user = response.data,
-        error => console.log('Error getting user details')
-      );
+    this.id = this.route.snapshot.params['id'];
+    this.getUser(this.id);
+  }
+
+  getUser(id: string) {
+    this.taqtileApiService.getUser(id)
+                            .subscribe(
+                              response => this.user = response.data,
+                              error => {
+                                console.log('Error getting user details');
+                                this.errorEdit(error.status);
+                              }
+                            );
+  }
+
+  errorEdit(statusCode: number) {
+    switch(statusCode){
+      case 401: {
+        this.errorMessage = "Sua seção expirou. Faça login novamente!";
+        this.userInfoService.logout();
+        this.router.navigate(['/login']);
+        this.userInfoService.sendMessage('login', this.errorMessage);
+        break;
+      }
+      case 0: {
+        this.errorMessage = "Houve um problema na conexão. Verifique seu acesso à internet";
+        break;
+      }
+      default: {
+        this.errorMessage = "Ocorreu algum problema ao listar os usuários. Tente novamente!";
+        break;
+      }
+    }
   }
 
   goBack() {

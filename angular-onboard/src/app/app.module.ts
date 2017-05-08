@@ -15,7 +15,8 @@ import { routing } from './app.routes';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
-
+import { LoginGuardService } from './login-guard.service';
+import { LoginPipe } from './login.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +26,8 @@ import { EditUserComponent } from './edit-user/edit-user.component';
     UserComponent,
     UserDetailsComponent,
     CreateUserComponent,
-    EditUserComponent
+    EditUserComponent,
+    LoginPipe
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,8 @@ import { EditUserComponent } from './edit-user/edit-user.component';
   ],
   providers: [
     TaqtileApiService,
-    UserInfoService
+    UserInfoService,
+    LoginGuardService
   ],
   bootstrap: [AppComponent]
 })
