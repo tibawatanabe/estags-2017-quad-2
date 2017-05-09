@@ -1,6 +1,8 @@
 package com.example.myfirstapp.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -32,6 +34,8 @@ public class SignInActivity extends AppCompatActivity {
     private SignInProvider signInProvider;
 
     public static String USER_EXTRA = "com.example.myfirstapp.USER";
+
+    public static String PREF_TOKEN = "token_pref";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -94,6 +98,9 @@ public class SignInActivity extends AppCompatActivity {
         Toast.makeText(this, "Bem-vindo(a), "+ name +"!",Toast.LENGTH_LONG).show();
         Intent intent = new Intent(this, ListUsersActivity.class);
         intent.putExtra(USER_EXTRA, signInRemoteResponse.getData().getToken());
+        SharedPreferences.Editor editor = getSharedPreferences(PREF_TOKEN, MODE_PRIVATE).edit();
+        editor.putString("token", signInRemoteResponse.getData().getToken());
+        editor.commit();
         startActivity(intent);
     }
 

@@ -12,7 +12,7 @@ import com.example.myfirstapp.R;
 
 public class UsersViewHolder extends RecyclerView.ViewHolder {
 
-    private TextView textView;
+    private TextView name, email, id;
 
     public UsersViewHolder(View itemView) {
         super(itemView);
@@ -21,13 +21,22 @@ public class UsersViewHolder extends RecyclerView.ViewHolder {
 
     private void bindViews() {
 
-        textView = (TextView) itemView.findViewById(R.id.view_holder_users_text_view);
+        name = (TextView) itemView.findViewById(R.id.view_holder_users_text_view);
+        email = (TextView) itemView.findViewById(R.id.view_holder_email_text_view);
+        id = (TextView) itemView.findViewById(R.id.view_holder_id_text_view);
 
     }
 
-    public void setText(String text){
-        textView.setText(text);
+    public void setTextName(String text){
+        name.setText(text);
     }
 
+    public void setTextEmail(String text){
+        email.setText(text);
+    }
+
+    public void setTextId(String text){
+        id.setText(text);
+    }
 
 }

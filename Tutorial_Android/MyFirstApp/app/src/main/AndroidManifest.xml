@@ -33,12 +33,20 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.MainActivity" />
         </activity>
-        <activity android:name=".activities.ListUsersActivity"
-            android:parentActivityName=".activities.SignInActivity"
-            android:label="Lista de usuários">
+        <activity
+            android:name=".activities.ListUsersActivity"
+            android:label="Lista de usuários"
+            android:parentActivityName=".activities.SignInActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.SignInActivity" />
+        </activity>
+        <activity android:name=".activities.UserDetailsActivity"
+            android:label="Detalhes do usuário"
+            android:parentActivityName=".activities.ListUsersActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.ListUsersActivity" />
         </activity>
     </application>
 

@@ -1,10 +1,10 @@
 package com.example.myfirstapp.adapter.listUsers;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.example.myfirstapp.R;
 import com.example.myfirstapp.models.listUsers.response.ListUsersRemoteResponse;
@@ -15,6 +15,8 @@ import com.example.myfirstapp.viewHolders.UsersViewHolder;
  */
 
 public class AdapterListUsers extends RecyclerView.Adapter<UsersViewHolder> {
+
+    private ListenerListUsers listener;
 
     private ListUsersRemoteResponse listUsersRemoteResponse;
 
@@ -53,11 +55,23 @@ public class AdapterListUsers extends RecyclerView.Adapter<UsersViewHolder> {
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(UsersViewHolder holder, int position) {
+    public void onBindViewHolder(UsersViewHolder holder, final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.setText(listUsersRemoteResponse.getData().get(position).getName());
+        holder.setTextName(listUsersRemoteResponse.getData().get(position).getName());
+        holder.setTextEmail(listUsersRemoteResponse.getData().get(position).getEmail());
+        holder.setTextId(Integer.toString(listUsersRemoteResponse.getData().get(position).getId()));
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onUserClick(position);
+            }
+        });
 
     }
 
+    public void setListener(ListenerListUsers listener) {
+        this.listener = listener;
+    }
 }
