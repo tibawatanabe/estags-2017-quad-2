@@ -30,7 +30,7 @@ class UsersTableViewController: UITableViewController {
     }
     
     private func setupParameters() -> Parameters{
-        let pagination = Pagination(page : 1, window: 5)
+        let pagination = Pagination(page : 1, window: 30)
         
         guard let pagString = pagination.toJSONString() else{
             return ["pagination" : ""]
