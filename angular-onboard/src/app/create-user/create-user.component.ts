@@ -19,14 +19,14 @@ export class CreateUserComponent implements OnInit {
   campoVazioTipo;
 
   constructor(
-    private _taqtileApiService: TaqtileApiService
+    private taqtileApiService: TaqtileApiService
   ) { }
 
   ngOnInit() {
   }
 
   onSubmit(name: string, email: string, password: string, type: string) {
-    this._taqtileApiService.createUser(name, email, password, type)
+    this.taqtileApiService.createUser(name, email, password, type)
                            .subscribe(
                              response =>{
                               this.id = response.data.id;

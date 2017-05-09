@@ -1,9 +1,10 @@
-<div *ngIf="user">
+<div *ngIf="user" class="container">
   <h3>{{user.name}} | id: {{user.id}}</h3>
   <div>
     <p>{{user.email}}</p>
     <p>{{user.type}}</p>
     <p>{{user.createdAt}}</p>
   </div>
-  <button (click)="goBack()">Back</button>
+  <button (click)="goBack()" class="btn btn-success">Voltar</button>
+  <button (click)="gotoEdit(user.id)" class="btn btn-success">Editar</button>
 </div>

@@ -15,22 +15,23 @@ export class UsersListComponent implements OnInit {
   users;
 
   constructor(
-    private _taqtileApiService: TaqtileApiService,
+    private taqtileApiService: TaqtileApiService,
     private router: Router,
   ) {}
 
   ngOnInit() {
-    this._taqtileApiService.getUsers()
-                    // .do(console.log)
-                    // .map(response => response.data)
-                    .subscribe(
-                      // users => this.users = users,
-                      response => this.users = response.data,
-                      error => console.log('Error getting users'));
+    this.taqtileApiService
+      .getUsers()
+      // .do(console.log)
+      // .map(response => response.data)
+      .subscribe(
+        response => this.users = response.data,
+        // error => console.log('Error getting users')
+        console.log
+      );
   }
 
   gotoDetails(id: number) {
     this.router.navigate(['/user-details', id]);
   }
-
 }

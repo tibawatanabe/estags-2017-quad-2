@@ -14,6 +14,7 @@ import { UserInfoService } from './user-info.service';
 import { routing } from './app.routes';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { CreateUserComponent } from './create-user/create-user.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { CreateUserComponent } from './create-user/create-user.component';
     UsersListComponent,
     UserComponent,
     UserDetailsComponent,
-    CreateUserComponent
+    CreateUserComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule,

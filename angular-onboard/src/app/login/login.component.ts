@@ -18,18 +18,21 @@ export class LoginComponent implements OnInit {
   errorMessage: string;
 
   constructor(
-    private _taqtileApiService: TaqtileApiService,
-    private _userInfoService: UserInfoService
+    private taqtileApiService: TaqtileApiService,
+    private userInfoService: UserInfoService
   ) { }
 
   ngOnInit() {
   }
 
-  onSubmit(usuario: string, senha: string) {
-    this._taqtileApiService.login(usuario, senha).subscribe(response => {
-                                                            this.token = response.data.token;
-                                                            this._userInfoService.setToken(this.token);},
-                                                            error => console.log('Error logging this user'));
+  onSubmit(user: string, password: string) {
     this.submitted = true;
+
+    this.taqtileApiService.login(user, password)
+      .map(response => response.data.token)
+      .subscribe(
+        token => this.userInfoService.setToken(token),
+        error => console.log('Error logging this user')
+      );
   }
 }

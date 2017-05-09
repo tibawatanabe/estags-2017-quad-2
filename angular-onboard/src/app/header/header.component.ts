@@ -10,7 +10,7 @@ import { UserInfoService } from '../user-info.service';
 export class HeaderComponent implements OnInit {
   showOptions = false;
 
-  constructor(private _userInfoService: UserInfoService) { }
+  constructor(private userInfoService: UserInfoService) { }
 
   ngOnInit() {
   }

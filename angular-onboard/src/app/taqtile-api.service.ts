@@ -11,7 +11,7 @@ export class TaqtileApiService {
 
   constructor(
     private http: Http,
-    private _userInfoService: UserInfoService
+    private userInfoService: UserInfoService
   ) {
     this.baseUrl = 'https://tq-template-node.herokuapp.com';
   }
@@ -24,11 +24,11 @@ export class TaqtileApiService {
 
   getUsers(): Observable<any> {
     let headers = new Headers();
-    headers.append('Authorization', this._userInfoService.getToken());
+    headers.append('Authorization', this.userInfoService.getToken());
 
     let params = new URLSearchParams();
 
-    params.append('pagination', JSON.stringify({ window: 10, page: 1 }));
+    params.append('pagination', JSON.stringify({ window: 50, page: 1 }));
 
     return this.http.get(`${this.baseUrl}/users`, { params, headers })
                     .map(response => response.json());
@@ -36,7 +36,7 @@ export class TaqtileApiService {
 
   getUser(id: string): Observable<any> {
     let headers = new Headers();
-    headers.append('Authorization', this._userInfoService.getToken());
+    headers.append('Authorization', this.userInfoService.getToken());
 
     return this.http.get(`${this.baseUrl}/user/${id}`, {headers})
                     .map(response => response.json());
@@ -44,11 +44,21 @@ export class TaqtileApiService {
 
   createUser(name: string, email: string, password: string, type: string) {
     let headers = new Headers();
-    headers.append('Authorization', this._userInfoService.getToken());
+    headers.append('Authorization', this.userInfoService.getToken());
 
     let body = { name, email, password, type };
 
     return this.http.post(`${this.baseUrl}/user`, body, {headers})
+                    .map(response => response.json());
+  }
+
+  edit(name: string, email: string, id: string) {
+    let headers = new Headers();
+    headers.append('Authorization', this.userInfoService.getToken());
+
+    let body = { name, email };
+
+    return this.http.put(`${this.baseUrl}/user/${id}`, body, {headers})
                     .map(response => response.json());
   }
 
