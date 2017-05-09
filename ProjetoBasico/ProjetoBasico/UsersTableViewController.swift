@@ -11,6 +11,8 @@ import Alamofire
 
 class UsersTableViewController: UITableViewController {
     
+    @IBOutlet weak var pageField: UITextField!
+    
     var users = [User]() {
         didSet {
             tableView.reloadData()
@@ -32,7 +34,13 @@ class UsersTableViewController: UITableViewController {
     }
     
     private func setupParameters() -> Parameters{
-        let pagination = Pagination(page : 1, window: 30)
+        var pagNum = 1
+        if let p = pageField.text{
+            if let i = Int(p){
+                pagNum = i
+            }
+        }
+        let pagination = Pagination(page : pagNum, window: 10)
         
         guard let pagString = pagination.toJSONString() else{
             return ["pagination" : ""]
@@ -46,10 +54,8 @@ class UsersTableViewController: UITableViewController {
         myAlert.addAction(okAction)
         self.present(myAlert, animated: true, completion: nil)
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupPage()
+    
+    private func makeGetRequest(){
         let headers = setupHeaders()
         let parameters = setupParameters()
         
@@ -65,15 +71,25 @@ class UsersTableViewController: UITableViewController {
             }
             
             switch response.result {
-                case .success(_):
-                    if let listResponse = ListResponse(JSONString: responseString){
-                        self.users = listResponse.data
-                        self.totalUsers = listResponse.total
-                    }
-                case let .failure(error):
-                    self.displayMessage(msg: "Unable to retrieve list! \(error)")
+            case .success(_):
+                if let listResponse = ListResponse(JSONString: responseString){
+                    self.users = listResponse.data
+                    self.totalUsers = listResponse.total
+                }
+            case let .failure(error):
+                self.displayMessage(msg: "Unable to retrieve list! \(error)")
             }
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setupPage()
+        makeGetRequest()
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -84,6 +100,10 @@ class UsersTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath)
         cell.textLabel?.text = users[indexPath.row].name
         return cell
+    }
+    
+    @IBAction func okPressed(_ sender: AnyObject) {
+        makeGetRequest()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

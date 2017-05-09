@@ -24,7 +24,7 @@ class DetalUserViewController: UIViewController {
         if let u = user{
             UserName.text = u.getName()
             UserID.text = String(u.getID())
-            UserEmail.text = u.getUser()
+            UserEmail.text = u.getEmail()
             UserCreatedAt.text = u.getCreatedAt()
             UserUpdatedAt.text = u.getUpdatedAt()
         }

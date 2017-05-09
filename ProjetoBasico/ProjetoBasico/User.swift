@@ -11,7 +11,7 @@ import Alamofire
 import ObjectMapper
 
 class User : Mappable{
-    var user: String = ""
+    var email: String = ""
     var password: String = ""
     var id: Int = 0
     var name: String = ""
@@ -22,20 +22,20 @@ class User : Mappable{
      required init?(map: Map) {}
     
     init(user: String, password: String) {
-        self.user = user
+        self.email = user
         self.password = password
     }
     
     func toRequestParams() -> Parameters{
         let parameters: Parameters = [
-                    "user": self.user,
+                    "user": self.email,
                     "password" : self.password
         ]
         return parameters
     }
     
     func mapping(map: Map) {
-        user <- map["user"]
+        email <- map["email"]
         password <- map["password"]
         id <- map["id"]
         name <- map["name"]
@@ -44,7 +44,7 @@ class User : Mappable{
         updatedAt <- map["updatedAt"]
     }
     
-    func setUser(user: String){self.user = user}
+    func setEmail(email: String){self.email = email}
     func setPassword(password: String){self.password = password}
     func setID(id: Int){self.id = id}
     func setName(name: String){self.name = name}
@@ -52,7 +52,7 @@ class User : Mappable{
     func setCreatedAt(createdAt: String){self.createdAt = createdAt}
     func setUpdatedAt(updatedAt: String){self.updatedAt = updatedAt}
     
-    func getUser() -> String{return self.user}
+    func getEmail() -> String{return self.email}
     func getPassword() -> String{return self.password}
     func getID() -> Int{return self.id}
     func getName() -> String{return self.name}

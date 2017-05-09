@@ -78,7 +78,7 @@ class CreateUserViewController: UIViewController {
     private func setupParameters(newUser: User) -> Parameters{
         let par: Parameters = [
             "name": newUser.getName(),
-            "email": newUser.getUser(),
+            "email": newUser.getEmail(),
             "password": newUser.getPassword(),
             "type": newUser.getType()
         ]

@@ -36,7 +36,7 @@ class LoginViewController: UIViewController {
     @IBAction func loginPressed(_ sender: AnyObject) -> Void {
         let currentUser = self.currentUser()
         
-        let allFieldsAreFilled = currentUser.user != "" && currentUser.password != ""
+        let allFieldsAreFilled = currentUser.email != "" && currentUser.password != ""
         guard allFieldsAreFilled else {
             displayMessage(msg: "Please fill in all required fields")
             return
