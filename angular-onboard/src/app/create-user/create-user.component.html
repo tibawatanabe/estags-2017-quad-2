@@ -5,7 +5,7 @@
     <form (ngSubmit)="createUser(name.value, email.value, password.value, type.value)" #createForm="ngForm">
       <div class="form-group">
         <label for="name">Nome</label>
-        <input type="text" class="form-control" placeholder="digite seu nome" id="name"
+        <input type="text" class="form-control" placeholder="Barney Stinson" id="name"
               required
               [(ngModel)]="campoVazioNome" name="name"
               #name="ngModel">
@@ -17,7 +17,7 @@
 
       <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" class="form-control" placeholder="digite seu email" id="email"
+        <input type="email" class="form-control" placeholder="barney@himym.com" id="email"
               required
               [(ngModel)]="campoVazioEmail" name="email"
               #email="ngModel">
@@ -29,7 +29,7 @@
 
       <div class="form-group">
         <label for="password">Senha</label>
-        <input type="password" class="form-control" placeholder="digite sua senha" id="passoword"
+        <input type="password" class="form-control" placeholder="********" id="passoword"
               required
               [(ngModel)]="campoVazioSenha" name="password"
               #password="ngModel">
