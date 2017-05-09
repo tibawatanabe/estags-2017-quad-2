@@ -1,10 +1,10 @@
-<header id="header">
+<header id="header" class="container">
   <div class="header-text">
     <h1>Taqtile Onboard</h1>
-    <nav class="header-nav" [hidden]="showOptions">
+    <nav class="header-nav" *ngIf="showOptions">
       <a routerLink="login">login</a>
       <span class="divider">|</span>
-      <a routerLink="users-list">lista de usuarios</a>
+      <a routerLink="users-list">{{'Lista de usuarios' | canShow}}</a>
       <span class="divider">|</span>
       <a routerLink="create-user">criar usuario</a>
     </nav>

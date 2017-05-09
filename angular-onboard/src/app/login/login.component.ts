@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 
 import { UserComponent } from '../user/user.component';
 import { TaqtileApiService } from '../taqtile-api.service';
@@ -16,23 +16,58 @@ export class LoginComponent implements OnInit {
   campoVazioPassword = null;
   submitted = false;
   errorMessage: string;
+  loginNeeded: string;
 
   constructor(
     private taqtileApiService: TaqtileApiService,
-    private userInfoService: UserInfoService
+    private userInfoService: UserInfoService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
+    // this.loginNeeded = this.route.snapshot.params['error'];
+    // this.route.params.switchMap((params: Params) => this.loginNeeded = params['error']);
+
+    this.userInfoService.flashMessage$.subscribe((message) => {
+      if (message.id == 'login') {
+        this.loginNeeded = message.message;
+      }
+    })
   }
 
-  onSubmit(user: string, password: string) {
-    this.submitted = true;
-
+  login(user: string, password: string) {
     this.taqtileApiService.login(user, password)
-      .map(response => response.data.token)
+      .map(response => response.data)
       .subscribe(
-        token => this.userInfoService.setToken(token),
-        error => console.log('Error logging this user')
+        response => {
+          this.userInfoService.setToken(response.token);
+          this.userInfoService.setId(response.user.id);
+          this.submitted = true;
+        },
+        error => {
+          console.log('Error logging this user');
+          this.errorLogin(error.status);
+        }
       );
+  }
+
+  errorLogin(statusCode: number) {
+    this.submitted = false;
+
+    switch(statusCode){
+      case 401: {
+        this.errorMessage = "Usuário ou senha inválidos. Tente novamente!";
+        this.campoVazioPassword = null;
+        break;
+      }
+      case 0: {
+        this.errorMessage = "Houve um problema na conexão. Verifique seu acesso à internet";
+        break;
+      }
+      default: {
+        this.errorMessage = "Ocorreu algum problema ao fazer seu login. Tente novamente!";
+        break;
+      }
+    }
   }
 }

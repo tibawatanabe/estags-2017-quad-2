@@ -8,7 +8,8 @@ import { UserInfoService } from '../user-info.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  showOptions = false;
+  showOptions = true;
+  isLoggedIn = true;
 
   constructor(private userInfoService: UserInfoService) { }
 
