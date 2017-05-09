@@ -30,11 +30,13 @@
   },
   "dependencies": {
     "@types/jsonwebtoken": "^7.2.0",
+    "bcrypt-nodejs": "^0.0.3",
     "body-parser": "^1.17.1",
     "debug": "^2.6.6",
     "express": "^4.15.2",
     "fs": "^0.0.1-security",
     "jsonwebtoken": "^7.4.0",
+    "mongoose": "^4.9.7",
     "morgan": "^1.8.1"
   }
 }
