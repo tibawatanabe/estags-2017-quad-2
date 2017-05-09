@@ -22,11 +22,11 @@ class DetalUserViewController: UIViewController {
         super.viewDidLoad()
 
         if let u = user{
-            UserName.text = u.name
-            UserID.text = String(u.id)
-            UserEmail.text = u.email
-            UserCreatedAt.text = u.createdAt
-            UserUpdatedAt.text = u.updatedAt
+            UserName.text = u.getName()
+            UserID.text = String(u.getID())
+            UserEmail.text = u.getUser()
+            UserCreatedAt.text = u.getCreatedAt()
+            UserUpdatedAt.text = u.getUpdatedAt()
         }
     
     }

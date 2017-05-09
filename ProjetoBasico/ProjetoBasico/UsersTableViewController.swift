@@ -17,6 +17,8 @@ class UsersTableViewController: UITableViewController {
         }
     }
     
+    var totalUsers: Int = 0
+    
     private func setupPage() {
         self.navigationItem.hidesBackButton = true
     }
@@ -66,6 +68,7 @@ class UsersTableViewController: UITableViewController {
                 case .success(_):
                     if let listResponse = ListResponse(JSONString: responseString){
                         self.users = listResponse.data
+                        self.totalUsers = listResponse.total
                     }
                 case let .failure(error):
                     self.displayMessage(msg: "Unable to retrieve list! \(error)")
@@ -85,20 +88,24 @@ class UsersTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == "ShowUser"{
+        if segue.identifier == "ShowUser" {
             
             let userVC = segue.destination as? DetalUserViewController
-            
             guard let cell = sender as? UITableViewCell,
                 let indexPath = tableView.indexPath(for: cell) else{
                     return
             }
-            
             userVC?.user = users[indexPath.row]
-            
         
+        }
+        else if segue.identifier == "CreateUser" {
+            
+            let createVC = segue.destination as? CreateUserViewController
+            createVC?.numberOfUsers = self.totalUsers
+            
+            
+            
         }
         
     }
-
 }
