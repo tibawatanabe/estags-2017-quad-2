@@ -4,7 +4,6 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { TaqtileApiService } from '../taqtile-api.service';
 
-import 'rxjs/add/operator/do';
 import { UserInfoService } from "app/user-info.service";
 import { MessagesService } from '../messages.service';
 

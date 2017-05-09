@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Location } from '@angular/common';
 
-import 'rxjs/add/operator/switchMap';
-
 import { TaqtileApiService } from '../taqtile-api.service';
 import { UserInfoService } from '../user-info.service';
 import { MessagesService } from '../messages.service';
@@ -40,13 +38,13 @@ export class EditUserComponent implements OnInit {
 
   getUser(id: string) {
     this.taqtileApiService.getUser(id)
-                            .subscribe(
-                              response => this.user = response.data,
-                              error => {
-                                console.log('Error getting user details');
-                                this.messagesService.setMessage('edit-user', error.status);
-                              }
-                            );
+                          .subscribe(
+                            response => this.user = response.data,
+                            error => {
+                              console.log('Error getting user details');
+                              this.messagesService.setMessage('edit-user', error.status);
+                            }
+                          );
   }
 
   goBack() {

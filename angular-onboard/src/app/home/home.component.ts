@@ -24,21 +24,20 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.getUser();
 
-    this.messagesService.flashMessage$.subscribe((message) => {
-      if (message.id == 'users-list') {
-        this.errorMessage = message.message;
-      }
-    })
+    this.messagesService
+        .flashMessage$
+        .filter(message => message.id == 'users-list')
+        .subscribe(message => this.errorMessage = message.message);
   }
 
   getUser() {
     this.user = this.taqtileApiService.getUser(this.userInfoService.getId())
-                                        .subscribe(
-                                          response => this.user = response.data,
-                                          error => {
-                                            console.log('Error getting user');
-                                            this.messagesService.setMessage('home', error.status);
-                                          }
-                                        );
+                                      .subscribe(
+                                        response => this.user = response.data,
+                                        error => {
+                                          console.log('Error getting user');
+                                          this.messagesService.setMessage('home', error.status);
+                                        }
+                                      );
   }
 }

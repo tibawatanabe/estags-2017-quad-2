@@ -41,13 +41,10 @@ export class LoginComponent implements OnInit {
   login(user: string, password: string) {
     this.taqtileApiService.login(user, password)
       .map(response => response.data)
+      .do(response => this.userInfoService.setToken(response.token))
+      .do(response => this.userInfoService.setId(response.user.id))
       .subscribe(
-        response => {
-          this.userInfoService.setToken(response.token);
-          this.userInfoService.setId(response.user.id);
-          this.submitted = true;
-          this.router.navigate(['/home']);
-        },
+        response => this.router.navigate(['/home']),
         error => {
           console.log('Error logging this user');
           this.errorLogin(error.status);
