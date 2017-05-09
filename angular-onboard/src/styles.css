@@ -2,3 +2,7 @@
 a {
     cursor: pointer;
 }
+
+form {
+    max-width: 300px;
+}
