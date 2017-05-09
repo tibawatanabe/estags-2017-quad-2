@@ -55,7 +55,7 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.8224224942501408" blue="0.69755808997548208" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.99607843137254903" green="0.82352941176470584" blue="0.69411764705882351" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="TLc-Q9-syx"/>
                     <connections>
@@ -71,17 +71,18 @@
         <!--User List-->
         <scene sceneID="Nsy-he-x0F">
             <objects>
-                <tableViewController title="User List" id="2Ht-p4-9TM" customClass="UsersTableViewController" customModule="ProjetoBasico" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="2Ht-p4-9TM" customClass="UsersTableViewController" customModule="ProjetoBasico" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="75" sectionHeaderHeight="18" sectionFooterHeight="18" id="Wyh-yf-9DD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="sectionIndexBackgroundColor" red="1" green="0.82242249430000003" blue="0.69755809000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="UserCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" rowHeight="75" id="D2D-Af-BK8">
                                 <rect key="frame" x="0.0" y="56" width="375" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="D2D-Af-BK8" id="aqf-az-OC6">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="74"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
@@ -94,6 +95,11 @@
                             <outlet property="delegate" destination="2Ht-p4-9TM" id="Dk1-MN-BN0"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="User List" id="lJ2-UO-M20">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="TVy-X3-F36"/>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="His-x5-hEi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
