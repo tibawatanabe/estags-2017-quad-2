@@ -11,6 +11,7 @@
 		4D0111F11EBD13A0007E54AB /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0111F01EBD13A0007E54AB /* ErrorResponse.swift */; };
 		4D0111F51EBD23A4007E54AB /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0111F41EBD23A4007E54AB /* UserResponse.swift */; };
 		4D04B7641EC1FD8700057BFD /* CreateUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D04B7631EC1FD8700057BFD /* CreateUserViewController.swift */; };
+		4D04B7661EC2601D00057BFD /* EditUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D04B7651EC2601D00057BFD /* EditUserViewController.swift */; };
 		4D06DE0B1EC0AF110003FDDA /* Pagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D06DE0A1EC0AF110003FDDA /* Pagination.swift */; };
 		4D06DE0F1EC0B95C0003FDDA /* ListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D06DE0E1EC0B95C0003FDDA /* ListResponse.swift */; };
 		4D06DE111EC10A830003FDDA /* DetalUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D06DE101EC10A830003FDDA /* DetalUserViewController.swift */; };
@@ -28,6 +29,7 @@
 		4D0111F01EBD13A0007E54AB /* ErrorResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		4D0111F41EBD23A4007E54AB /* UserResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
 		4D04B7631EC1FD8700057BFD /* CreateUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUserViewController.swift; sourceTree = "<group>"; };
+		4D04B7651EC2601D00057BFD /* EditUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditUserViewController.swift; sourceTree = "<group>"; };
 		4D06DE0A1EC0AF110003FDDA /* Pagination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pagination.swift; sourceTree = "<group>"; };
 		4D06DE0E1EC0B95C0003FDDA /* ListResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListResponse.swift; sourceTree = "<group>"; };
 		4D06DE101EC10A830003FDDA /* DetalUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetalUserViewController.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				4D06DE0E1EC0B95C0003FDDA /* ListResponse.swift */,
 				4D06DE101EC10A830003FDDA /* DetalUserViewController.swift */,
 				4D04B7631EC1FD8700057BFD /* CreateUserViewController.swift */,
+				4D04B7651EC2601D00057BFD /* EditUserViewController.swift */,
 			);
 			path = ProjetoBasico;
 			sourceTree = "<group>";
@@ -239,6 +242,7 @@
 				4D04B7641EC1FD8700057BFD /* CreateUserViewController.swift in Sources */,
 				4D0111F11EBD13A0007E54AB /* ErrorResponse.swift in Sources */,
 				4D494FD51EBBAF9F0031FA8A /* User.swift in Sources */,
+				4D04B7661EC2601D00057BFD /* EditUserViewController.swift in Sources */,
 				4D06DE111EC10A830003FDDA /* DetalUserViewController.swift in Sources */,
 				4D494FD11EBB72560031FA8A /* LoginViewController.swift in Sources */,
 				4D06DE0B1EC0AF110003FDDA /* Pagination.swift in Sources */,

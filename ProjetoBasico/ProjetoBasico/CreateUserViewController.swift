@@ -50,7 +50,7 @@ class CreateUserViewController: UIViewController {
         let now = Date()
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-        formatter.timeZone = TimeZone(identifier: "pt_BR")
+        formatter.timeZone = TimeZone(abbreviation: "BRT")
         return formatter.string(from: now)
         
     }

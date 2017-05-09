@@ -18,15 +18,29 @@ class DetalUserViewController: UIViewController {
     
     var user: User?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    override func viewWillAppear(_ animated: Bool) {
         if let u = user{
             UserName.text = u.getName()
             UserID.text = String(u.getID())
             UserEmail.text = u.getEmail()
             UserCreatedAt.text = u.getCreatedAt()
             UserUpdatedAt.text = u.getUpdatedAt()
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        
+    
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "EditUser" {
+        
+            let editVC = segue.destination as? EditUserViewController
+            editVC?.user = user
         }
     
     }
