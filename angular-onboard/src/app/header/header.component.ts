@@ -8,13 +8,22 @@ import { UserInfoService } from '../user-info.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  showOptions = false;
+  token;
+  isLoggedIn = false;
 
   constructor(private userInfoService: UserInfoService) { }
 
   ngOnInit() {
+    this.userInfoService.isLoggedIn$.subscribe(response => {
+      if (response.token) {
+        this.isLoggedIn = true;
+      } else {
+        this.isLoggedIn = false;
+      }
+    });
   }
 
-  
-
+  logout() {
+    this.userInfoService.logout();
+  }
 }

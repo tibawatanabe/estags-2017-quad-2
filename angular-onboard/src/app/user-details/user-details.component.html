@@ -1,10 +1,16 @@
-<div *ngIf="user" class="container">
-  <h3>{{user.name}} | id: {{user.id}}</h3>
-  <div>
-    <p>{{user.email}}</p>
-    <p>{{user.type}}</p>
-    <p>{{user.createdAt}}</p>
+<div class="container">
+  <div *ngIf="user">
+    <h3>{{user.name}} | id: {{user.id}}</h3>
+    <div>
+      <p>{{user.email}}</p>
+      <p>{{user.type}}</p>
+      <p>{{user.createdAt}}</p>
+    </div>
+    <button (click)="gotoList()" class="btn btn-default">Voltar</button>
+    <button (click)="gotoEdit(user.id)" class="btn btn-primary">Editar</button>
   </div>
-  <button (click)="goBack()" class="btn btn-success">Voltar</button>
-  <button (click)="gotoEdit(user.id)" class="btn btn-success">Editar</button>
+  <div *ngIf="!user">
+    <p>{{errorMessage}}</p>
+    <button (click)="getUser(id)" class="btn btn-default">Recarregar</button>
+  </div>
 </div>

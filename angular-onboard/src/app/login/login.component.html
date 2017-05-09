@@ -1,10 +1,10 @@
 <div class="container" [hidden]="submitted">
+  <p>{{loginNeeded}}</p>
   <h2>Faça seu login:</h2>
-  <form (ngSubmit)="onSubmit(username.value, password.value); loginForm.reset()" #loginForm="ngForm">
-    <p>{{errorMessage}}</p>
+  <form (ngSubmit)="login(username.value, password.value)" #loginForm="ngForm">
     <div class="form-group">
       <label for="username">Usuário</label>
-      <input type="text" class="form-control" placeholder="digite seu usuário" id="username"
+      <input type="text" class="form-control" placeholder="example@example.com" id="username"
              required
              [(ngModel)]="campoVazioUser" name="username"
              #username="ngModel">
@@ -16,7 +16,7 @@
 
     <div class="form-group">
       <label for="password">Senha</label>
-      <input type="password" class="form-control" placeholder="digite sua senha" id="password"
+      <input type="password" class="form-control" placeholder="*********" id="password"
             required
             [(ngModel)]="campoVazioPassword" name="password"
             #password="ngModel">
@@ -26,7 +26,9 @@
       </div>
     </div>
 
-    <button type="submit" class="btn btn-success" [disabled]="!loginForm.form.valid">
+    <p>{{errorMessage}}</p>
+
+    <button type="submit" class="btn btn-primary" [disabled]="!loginForm.form.valid">
             Log in
     </button>
   </form>

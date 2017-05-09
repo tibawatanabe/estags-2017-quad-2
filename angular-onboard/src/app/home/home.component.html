@@ -1,0 +1,7 @@
+<div class="container" *ngIf="user">
+  <h3>Seja bem-vindo, {{user.name}}</h3>
+</div>
+<div class="container" *ngIf="!user">
+  <p>{{errorMessage}}</p>
+  <button (click)="getUser()" class="btn btn-default">Recarregar</button>
+</div>

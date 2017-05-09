@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
 
 import { UserInfoService } from './user-info.service';
 
@@ -22,13 +21,13 @@ export class TaqtileApiService {
                     .map(response => response.json());
   }
 
-  getUsers(): Observable<any> {
+  getUsers(size: number, page: number): Observable<any> {
     let headers = new Headers();
     headers.append('Authorization', this.userInfoService.getToken());
 
     let params = new URLSearchParams();
 
-    params.append('pagination', JSON.stringify({ window: 50, page: 1 }));
+    params.append('pagination', JSON.stringify({ window: size, page: page }));
 
     return this.http.get(`${this.baseUrl}/users`, { params, headers })
                     .map(response => response.json());

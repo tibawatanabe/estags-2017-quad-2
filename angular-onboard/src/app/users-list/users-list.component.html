@@ -1,16 +1,24 @@
-<div class="main-content">
-  <ol *ngIf="users">
-    <li *ngFor="let user of users" class="user-list">
-      <!--<user class="user-block" [user]="user"></user>-->
-      <a (click)="gotoDetails(user.id)">{{user.name}}</a>
-    </li>
-  </ol>
-  <div class="nav">
-    <a href="" class="prev">
-      ‹ Prev
-    </a>
-    <a href="" class="more">
-      More ›
-    </a>
+<div class="container">
+  <div *ngIf="users">
+    <h3>Lista de Usuários</h3>
+    <div class="container">
+      <span>Selecione o número de usuários por página: </span>
+      <select id="size" [(ngModel)]="size" (change)="getUsers()">
+        <option *ngFor="let size of sizeOptions" [value]="size">{{size}}</option>
+      </select>
+    </div>
+    <ol start="{{listStart}}">
+      <li *ngFor="let user of users" class="user-list">
+        <a (click)="gotoDetails(user.id)">{{user.name}}</a>
+      </li>
+    </ol>
+    <div class="nav">
+      <a class="prev" (click)= "previousPage()" *ngIf="!firstPage">‹ Anterior</a>
+      <a class="more" (click)= "nextPage()" *ngIf="!lastPage">Próxima ›</a>
+    </div>
+  </div>
+  <div *ngIf="!users">
+    <p>{{errorMessage}}</p>
+    <button (click)="getUsers()" class="btn btn-default">Recarregar</button>
   </div>
 </div>
