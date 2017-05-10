@@ -1,0 +1,8 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="defaultText">20sp</dimen>
+    <dimen name="textM">18sp</dimen>
+    <dimen name="margin">5dp</dimen>
+    <dimen name="textG">25sp</dimen>
+    <dimen name="spinner_padding">10dp</dimen>
+</resources>

@@ -41,8 +41,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.SignInActivity" />
         </activity>
-        <activity android:name=".activities.UserDetailsActivity"
+        <activity
+            android:name=".activities.UserDetailsActivity"
             android:label="Detalhes do usuário"
+            android:parentActivityName=".activities.ListUsersActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.ListUsersActivity" />
+        </activity>
+        <activity android:name=".activities.CreateUserActivity"
+            android:label="Criação de usuário"
             android:parentActivityName=".activities.ListUsersActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

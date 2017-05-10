@@ -17,17 +17,20 @@
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:textSize="20sp"
-        android:text="Name:  "/>
+        android:textSize="@dimen/defaultText"
+        android:textColor="@color/textColor"
+        android:text="@string/name"/>
 
     <TextView
         android:id="@+id/activity_user_details_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:textSize="@dimen/defaultText"
+        android:textColor="@color/blackSoft"
         app:layout_constraintLeft_toRightOf="@+id/activity_user_details_show_name"
         app:layout_constraintBaseline_toBaselineOf="@+id/activity_user_details_show_name"
-        />
+        android:layout_marginStart="@dimen/margin"
+        android:layout_marginLeft="@dimen/margin" />
 
     <TextView
         android:id="@+id/activity_user_details_show_email"
@@ -35,34 +38,41 @@
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/activity_user_details_show_name"
-        android:textSize="20sp"
-        android:text="Email:  "/>
+        android:textSize="@dimen/defaultText"
+        android:textColor="@color/textColor"
+        android:text="@string/email"/>
 
     <TextView
         android:id="@+id/activity_user_details_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:textSize="@dimen/defaultText"
+        android:textColor="@color/blackSoft"
         app:layout_constraintLeft_toRightOf="@+id/activity_user_details_show_email"
         app:layout_constraintBaseline_toBaselineOf="@+id/activity_user_details_show_email"
-        />
+        android:layout_marginStart="@dimen/margin"
+        android:layout_marginLeft="@dimen/margin"/>
+
     <TextView
         android:id="@+id/activity_user_details_show_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/activity_user_details_show_email"
-        android:textSize="20sp"
-        android:text="ID:  "/>
+        android:textSize="@dimen/defaultText"
+        android:textColor="@color/textColor"
+        android:text="@string/id"/>
 
     <TextView
         android:id="@+id/activity_user_details_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:textSize="@dimen/defaultText"
+        android:textColor="@color/blackSoft"
         app:layout_constraintLeft_toRightOf="@+id/activity_user_details_show_id"
         app:layout_constraintBaseline_toBaselineOf="@+id/activity_user_details_show_id"
-        />
+        android:layout_marginStart="@dimen/margin"
+        android:layout_marginLeft="@dimen/margin"/>
 
     <TextView
         android:id="@+id/activity_user_details_show_created"
@@ -70,17 +80,20 @@
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/activity_user_details_show_id"
-        android:textSize="20sp"
-        android:text="Created at:  "/>
+        android:textSize="@dimen/defaultText"
+        android:textColor="@color/textColor"
+        android:text="@string/createdAt"/>
 
     <TextView
         android:id="@+id/activity_user_details_created"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
+        android:textSize="@dimen/textM"
+        android:textColor="@color/blackSoft"
         app:layout_constraintLeft_toRightOf="@+id/activity_user_details_show_created"
         app:layout_constraintBaseline_toBaselineOf="@+id/activity_user_details_show_created"
-        />
+        android:layout_marginStart="@dimen/margin"
+        android:layout_marginLeft="@dimen/margin"/>
 
     <TextView
         android:id="@+id/activity_user_details_show_updated"
@@ -88,16 +101,19 @@
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/activity_user_details_show_created"
-        android:textSize="20sp"
-        android:text="Updated at:  "/>
+        android:textSize="@dimen/defaultText"
+        android:textColor="@color/textColor"
+        android:text="@string/updatedAt"/>
 
     <TextView
         android:id="@+id/activity_user_details_updated"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
+        android:textSize="@dimen/textM"
+        android:textColor="@color/blackSoft"
         app:layout_constraintLeft_toRightOf="@+id/activity_user_details_show_updated"
         app:layout_constraintBaseline_toBaselineOf="@+id/activity_user_details_show_updated"
-        />
+        android:layout_marginStart="@dimen/margin"
+        android:layout_marginLeft="@dimen/margin"/>
 
 </android.support.constraint.ConstraintLayout>

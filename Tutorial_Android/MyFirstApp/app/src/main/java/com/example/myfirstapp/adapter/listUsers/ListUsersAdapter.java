@@ -1,24 +1,28 @@
 package com.example.myfirstapp.adapter.listUsers;
 
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.myfirstapp.R;
+import com.example.myfirstapp.models.listUsers.response.ListUsersDataRemoteResponse;
 import com.example.myfirstapp.models.listUsers.response.ListUsersRemoteResponse;
-import com.example.myfirstapp.viewHolders.UsersViewHolder;
+import com.example.myfirstapp.recyclerView.viewHolders.UsersViewHolder;
+
+import java.util.List;
 
 /**
  * Created by taqtile on 5/5/17.
  */
 
-public class AdapterListUsers extends RecyclerView.Adapter<UsersViewHolder> {
+public class ListUsersAdapter extends RecyclerView.Adapter<UsersViewHolder> {
 
-    private ListenerListUsers listener;
+    private ListUsersListener listener;
 
-    private ListUsersRemoteResponse listUsersRemoteResponse;
+    //private ListUsersRemoteResponse listUsersRemoteResponse;
+
+    private List<ListUsersDataRemoteResponse> userList;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -34,14 +38,14 @@ public class AdapterListUsers extends RecyclerView.Adapter<UsersViewHolder> {
     }*/
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public AdapterListUsers(ListUsersRemoteResponse listUsersRemoteResponse) {
-        this.listUsersRemoteResponse = listUsersRemoteResponse;
+    public ListUsersAdapter(List<ListUsersDataRemoteResponse> userList) {
+        this.userList = userList;
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return listUsersRemoteResponse.getData().size();
+        return userList.size();
     }
 
     // Create new views (invoked by the layout manager)
@@ -58,9 +62,9 @@ public class AdapterListUsers extends RecyclerView.Adapter<UsersViewHolder> {
     public void onBindViewHolder(UsersViewHolder holder, final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.setTextName(listUsersRemoteResponse.getData().get(position).getName());
-        holder.setTextEmail(listUsersRemoteResponse.getData().get(position).getEmail());
-        holder.setTextId(Integer.toString(listUsersRemoteResponse.getData().get(position).getId()));
+        holder.setTextName(userList.get(position).getName());
+        holder.setTextEmail(userList.get(position).getEmail());
+        holder.setTextId(Integer.toString(userList.get(position).getId()));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,7 +75,11 @@ public class AdapterListUsers extends RecyclerView.Adapter<UsersViewHolder> {
 
     }
 
-    public void setListener(ListenerListUsers listener) {
+    public void updateAdapter(List<ListUsersDataRemoteResponse> userListUp){
+        userList.addAll(userListUp);
+    }
+
+    public void setListener(ListUsersListener listener) {
         this.listener = listener;
     }
 }
