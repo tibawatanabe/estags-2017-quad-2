@@ -18,6 +18,7 @@
 		4D494FD11EBB72560031FA8A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D494FD01EBB72560031FA8A /* LoginViewController.swift */; };
 		4D494FD31EBBAF240031FA8A /* UsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D494FD21EBBAF240031FA8A /* UsersTableViewController.swift */; };
 		4D494FD51EBBAF9F0031FA8A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D494FD41EBBAF9F0031FA8A /* User.swift */; };
+		4DACE2EA1EC3B1BF0054D8D2 /* UIViewController+AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACE2E91EC3B1BF0054D8D2 /* UIViewController+AlertPresenter.swift */; };
 		4DB70F1B1EBA52980067B6B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB70F1A1EBA52980067B6B2 /* AppDelegate.swift */; };
 		4DB70F201EBA52980067B6B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DB70F1E1EBA52980067B6B2 /* Main.storyboard */; };
 		4DB70F221EBA52980067B6B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DB70F211EBA52980067B6B2 /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 		4D494FD01EBB72560031FA8A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4D494FD21EBBAF240031FA8A /* UsersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersTableViewController.swift; sourceTree = "<group>"; };
 		4D494FD41EBBAF9F0031FA8A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		4DACE2E91EC3B1BF0054D8D2 /* UIViewController+AlertPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+AlertPresenter.swift"; sourceTree = "<group>"; };
 		4DB70F171EBA52980067B6B2 /* ProjetoBasico.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjetoBasico.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DB70F1A1EBA52980067B6B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4DB70F1F1EBA52980067B6B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				4D04B7631EC1FD8700057BFD /* CreateUserViewController.swift */,
 				4D04B7651EC2601D00057BFD /* EditUserViewController.swift */,
 				4D0AD2621EC33B23007FBABB /* DetailUserViewController.swift */,
+				4DACE2E91EC3B1BF0054D8D2 /* UIViewController+AlertPresenter.swift */,
 			);
 			path = ProjetoBasico;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 				4D494FD11EBB72560031FA8A /* LoginViewController.swift in Sources */,
 				4D06DE0B1EC0AF110003FDDA /* Pagination.swift in Sources */,
 				4DB70F1B1EBA52980067B6B2 /* AppDelegate.swift in Sources */,
+				4DACE2EA1EC3B1BF0054D8D2 /* UIViewController+AlertPresenter.swift in Sources */,
 				4D494FD31EBBAF240031FA8A /* UsersTableViewController.swift in Sources */,
 				4D0AD2631EC33B23007FBABB /* DetailUserViewController.swift in Sources */,
 				4D0111F51EBD23A4007E54AB /* UserResponse.swift in Sources */,

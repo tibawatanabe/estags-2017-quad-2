@@ -24,6 +24,8 @@ class User : Mappable {
     init(user: String, password: String) {
         self.email = user
         self.password = password
+        self.createdAt = getCurrentDate()
+        self.updatedAt = getCurrentDate()
     }
     
     func toRequestParams() -> Parameters {
@@ -44,20 +46,25 @@ class User : Mappable {
         updatedAt <- map["updatedAt"]
     }
     
-    func setEmail(email: String) {self.email = email}
-    func setPassword(password: String) {self.password = password}
-    func setID(id: Int) {self.id = id}
-    func setName(name: String) {self.name = name}
-    func setType(type: String) {self.type = type}
-    func setCreatedAt(createdAt: String) {self.createdAt = createdAt}
-    func setUpdatedAt(updatedAt: String) {self.updatedAt = updatedAt}
+    private func getCurrentDate() -> String {
+        let now = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        formatter.timeZone = TimeZone(abbreviation: "BRT")
+        return formatter.string(from: now)
+        
+    }
     
-    func getEmail() -> String {return self.email}
-    func getPassword() -> String {return self.password}
-    func getID() -> Int {return self.id}
-    func getName() -> String {return self.name}
-    func getType() -> String {return self.type}
-    func getCreatedAt() -> String {return self.createdAt}
-    func getUpdatedAt() -> String {return self.updatedAt}
+    func setup(name: String, type: String, id: Int) {
+        self.name = name
+        self.type = type
+        self.id = id
+    }
+    
+    func update(name: String, email: String) {
+        self.name = name
+        self.email = email
+        self.updatedAt = getCurrentDate()
+    }
     
 }

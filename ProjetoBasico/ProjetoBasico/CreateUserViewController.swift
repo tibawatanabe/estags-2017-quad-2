@@ -11,7 +11,6 @@ import Alamofire
 
 class CreateUserViewController: UIViewController {
     
-    
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
@@ -20,25 +19,36 @@ class CreateUserViewController: UIViewController {
     
     var numberOfUsers: Int = 0
     
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
+    // MARK: ACTION
+    @IBAction func donePressed(_ sender: AnyObject) {
+        guard checkAllFilled() else {
+            displayMessage(msg: "Please fill in all required fields")
+            return
+        }
+        guard checkFields() else {
+            return
+        }
+        
+        let newUser = createUser()
+        makePostRequest(newUser: newUser)
+    }
+    
+    // MARK: other
     private func checkAllFilled() -> Bool {
         return (
-            nameField.text            != "" &&
-            emailField.text           != "" &&
-            passwordField.text        != "" &&
-            confirmPasswordField.text != "" &&
-            typeField.text            != ""
+                nameField.text            != "" &&
+                emailField.text           != "" &&
+                passwordField.text        != "" &&
+                confirmPasswordField.text != "" &&
+                typeField.text            != ""
         )
     }
     
-    private func validateEmail(candidate: String) -> Bool {
-        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}"
-        return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: candidate)
-    }
-
     private func checkFields() -> Bool {
         let emailIsValid = validateEmail(candidate: emailField.text!)
         guard emailIsValid else {
@@ -52,25 +62,37 @@ class CreateUserViewController: UIViewController {
         return true
     }
     
-    private func getCurrentDate() -> String {
-        let now = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-        formatter.timeZone = TimeZone(abbreviation: "BRT")
-        return formatter.string(from: now)
-        
+    private func validateEmail(candidate: String) -> Bool {
+        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}"
+        return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: candidate)
     }
     
-    private func NewUser() -> User {
+    private func createUser() -> User {
         let newUser = User(user: emailField.text!, password: passwordField.text!)
-        
-        newUser.setName(name: nameField.text!)
-        newUser.setType(type: typeField.text!)
-        newUser.setID(id: numberOfUsers + 1)
-        newUser.setCreatedAt(createdAt: getCurrentDate())
-        newUser.setCreatedAt(createdAt: getCurrentDate())
+        newUser.setup(name: nameField.text!, type: typeField.text!, id: numberOfUsers + 1)
         
         return newUser
+    }
+    
+    // MARK: request
+    private func makePostRequest(newUser: User) {
+        let headers = setupHeaders()
+        let parameters = setupParameters(newUser: newUser)
+        
+        Alamofire.request("https://tq-template-node.herokuapp.com/user",
+                          method: .post,
+                          parameters: parameters,
+                          encoding: JSONEncoding.default,
+                          headers: headers
+            ).responseJSON { response in
+                
+                switch response.result {
+                case .success:
+                    self.displayMessage(msg: "New user successfully created!")
+                case .failure:
+                    self.displayMessage(msg: "Request couldn't be handled!")
+                }
+        }
     }
     
     private func setupHeaders() -> HTTPHeaders {
@@ -83,60 +105,12 @@ class CreateUserViewController: UIViewController {
     
     private func setupParameters(newUser: User) -> Parameters {
         let par: Parameters = [
-            "name": newUser.getName(),
-            "email": newUser.getEmail(),
-            "password": newUser.getPassword(),
-            "type": newUser.getType()
+            "name": newUser.name,
+            "email": newUser.email,
+            "password": newUser.password,
+            "type": newUser.type
         ]
         return par
     }
-    @IBAction func donePressed(_ sender: AnyObject) {
-        
-        guard checkAllFilled() else {
-            displayMessage(msg: "Please fill in all required fields")
-            return
-        }
-        
-        let allFieldsAreValid = checkFields()
-        guard allFieldsAreValid else {
-            return
-        }
-        
-        let newUser = NewUser()
-        
-        makePostRequest(newUser: newUser)
-        
-    }
     
-    private func makePostRequest(newUser: User) {
-        let headers = setupHeaders()
-        let parameters = setupParameters(newUser: newUser)
-        
-        Alamofire.request("https://tq-template-node.herokuapp.com/user",
-                          method: .post,
-                          parameters: parameters,
-                          encoding: JSONEncoding.default,
-                          headers: headers
-            ).responseJSON { response in
-            
-            switch response.result {
-                case .success:
-                    self.displayMessage(msg: "New user successfully created!")
-                case .failure:
-                    self.displayMessage(msg: "Request couldn't be handled!")
-            }
-            
-        }
-    
-    }
-    
-
-    private func displayMessage(msg: String) {
-        let myAlert = UIAlertController(title: "Alert", message: msg, preferredStyle: UIAlertControllerStyle.alert)
-        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil)
-        myAlert.addAction(okAction)
-        self.present(myAlert, animated: true, completion: nil)
-    }
-    
-   
 }

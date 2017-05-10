@@ -19,13 +19,6 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    private func currentUser() -> User {
-        let user = usernameField.text
-        let password = passwordField.text
-        let userAtual = User(user: user!, password: password!)
-        return userAtual
-    }
-    
     private func makePostRequest(currentUser: User) {
         let par = currentUser.toRequestParams()
         
@@ -68,7 +61,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginPressed(_ sender: AnyObject) -> Void {
-        let currentUser = self.currentUser()
+        let currentUser = User(user: usernameField.text!, password: passwordField.text!)
         
         let allFieldsAreFilled = currentUser.email != "" && currentUser.password != ""
         guard allFieldsAreFilled else {
@@ -83,11 +76,4 @@ class LoginViewController: UIViewController {
         performSegue(withIdentifier: "UsersTableViewController", sender: self)
     }
     
-    private func displayMessage(msg: String) {
-        let myAlert = UIAlertController(title: "Alert", message: msg, preferredStyle: UIAlertControllerStyle.alert)
-        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil)
-        myAlert.addAction(okAction)
-        self.present(myAlert, animated: true, completion: nil)
-    }
-
 }
