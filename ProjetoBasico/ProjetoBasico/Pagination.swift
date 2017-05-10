@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 import ObjectMapper
 
-class Pagination: Mappable{
+class Pagination: Mappable {
     
     var page: Int = 0
     var window: Int = 0

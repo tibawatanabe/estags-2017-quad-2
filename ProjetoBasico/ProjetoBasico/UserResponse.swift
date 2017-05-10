@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-class UserResponse: Mappable{
+class UserResponse: Mappable {
     var token: String = ""
     var id: Int = 0
     var name: String = ""

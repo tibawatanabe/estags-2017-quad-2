@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-class ErrorResponse: Mappable{
+class ErrorResponse: Mappable{ 
     
     var errors: [ErrorResponseData] = []
     

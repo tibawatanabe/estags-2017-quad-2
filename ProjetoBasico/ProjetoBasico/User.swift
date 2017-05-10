@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 import ObjectMapper
 
-class User : Mappable{
+class User : Mappable {
     var email: String = ""
     var password: String = ""
     var id: Int = 0
@@ -19,14 +19,14 @@ class User : Mappable{
     var createdAt: String = ""
     var updatedAt: String = ""
     
-     required init?(map: Map) {}
+    required init?(map: Map) {}
     
     init(user: String, password: String) {
         self.email = user
         self.password = password
     }
     
-    func toRequestParams() -> Parameters{
+    func toRequestParams() -> Parameters {
         let parameters: Parameters = [
                     "user": self.email,
                     "password" : self.password
@@ -44,20 +44,20 @@ class User : Mappable{
         updatedAt <- map["updatedAt"]
     }
     
-    func setEmail(email: String){self.email = email}
-    func setPassword(password: String){self.password = password}
-    func setID(id: Int){self.id = id}
-    func setName(name: String){self.name = name}
-    func setType(type: String){self.type = type}
-    func setCreatedAt(createdAt: String){self.createdAt = createdAt}
-    func setUpdatedAt(updatedAt: String){self.updatedAt = updatedAt}
+    func setEmail(email: String) {self.email = email}
+    func setPassword(password: String) {self.password = password}
+    func setID(id: Int) {self.id = id}
+    func setName(name: String) {self.name = name}
+    func setType(type: String) {self.type = type}
+    func setCreatedAt(createdAt: String) {self.createdAt = createdAt}
+    func setUpdatedAt(updatedAt: String) {self.updatedAt = updatedAt}
     
-    func getEmail() -> String{return self.email}
-    func getPassword() -> String{return self.password}
-    func getID() -> Int{return self.id}
-    func getName() -> String{return self.name}
-    func getType() -> String{return self.type}
-    func getCreatedAt() -> String{return self.createdAt}
-    func getUpdatedAt() -> String{return self.updatedAt}
+    func getEmail() -> String {return self.email}
+    func getPassword() -> String {return self.password}
+    func getID() -> Int {return self.id}
+    func getName() -> String {return self.name}
+    func getType() -> String {return self.type}
+    func getCreatedAt() -> String {return self.createdAt}
+    func getUpdatedAt() -> String {return self.updatedAt}
     
 }

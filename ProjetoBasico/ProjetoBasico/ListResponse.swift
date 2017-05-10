@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-class ListResponse: Mappable{
+class ListResponse: Mappable {
     
     var data: [User] = []
     var page: Int = 0

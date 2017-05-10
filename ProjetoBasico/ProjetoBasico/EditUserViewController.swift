@@ -16,14 +16,17 @@ class EditUserViewController: UIViewController {
     
     var user: User?
     
-    private func setupPage(){
+    private func setupPage() {
         newNameField.text = user?.getName()
         newEmailField.text = user?.getEmail()
     }
     
     
-    private func checkAllFilled() -> Bool{
-        return (newNameField.text != "" && newEmailField.text != "")
+    private func checkAllFilled() -> Bool {
+        return (
+            newNameField.text  != "" &&
+            newEmailField.text != ""
+        )
     }
     
     private func validateEmail(candidate: String) -> Bool {
@@ -31,7 +34,7 @@ class EditUserViewController: UIViewController {
         return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: candidate)
     }
     
-    private func checkFields() -> Bool{
+    private func checkFields() -> Bool {
         let emailIsValid = validateEmail(candidate: newEmailField.text!)
         guard emailIsValid else{
             displayMessage(msg: "Invalid email")
@@ -40,7 +43,7 @@ class EditUserViewController: UIViewController {
         return true
     }
     
-    private func setupHeaders() -> HTTPHeaders{
+    private func setupHeaders() -> HTTPHeaders {
         let token = UserDefaults.standard.value(forKey: "user_auth_token")!
         let headers: HTTPHeaders = [
             "Authorization": token as! String
@@ -48,7 +51,7 @@ class EditUserViewController: UIViewController {
         return headers
     }
     
-    private func setupParameters(updatedUser: User) -> Parameters{
+    private func setupParameters(updatedUser: User) -> Parameters {
         let par: Parameters = [
             "name": updatedUser.getName(),
             "email": updatedUser.getEmail(),
@@ -56,12 +59,17 @@ class EditUserViewController: UIViewController {
         return par
     }
     
-    private func makePostRequest(updatedUser: User){
+    private func makePostRequest(updatedUser: User) {
         let headers = setupHeaders()
         let parameters = setupParameters(updatedUser: updatedUser)
         let url = "https://tq-template-node.herokuapp.com/user/" + String(updatedUser.getID())
         
-        Alamofire.request(url ,method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+        Alamofire.request(url,
+                          method: .put,
+                          parameters: parameters,
+                          encoding: JSONEncoding.default,
+                          headers: headers
+            ).responseJSON { response in
             
             switch response.result {
             case let .success(JSON):
@@ -76,7 +84,7 @@ class EditUserViewController: UIViewController {
         
     }
     
-    private func getCurrentDate() -> String{
+    private func getCurrentDate() -> String {
         let now = Date()
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
@@ -104,16 +112,17 @@ class EditUserViewController: UIViewController {
             return
         }
         
-        if let u = self.user{
+        if let u = self.user {
             u.setName(name: newNameField.text!)
             u.setEmail(email: newEmailField.text!)
             u.setUpdatedAt(updatedAt: getCurrentDate())
+            
             makePostRequest(updatedUser: u)
         }
         
     }
 
-    private func displayMessage(msg: String){
+    private func displayMessage(msg: String) {
         let myAlert = UIAlertController(title: "Alert", message: msg, preferredStyle: UIAlertControllerStyle.alert)
         let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil)
         myAlert.addAction(okAction)

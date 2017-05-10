@@ -24,8 +24,14 @@ class CreateUserViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    private func checkAllFilled() -> Bool{
-        return (nameField.text != "" && emailField.text != "" && passwordField.text != "" && confirmPasswordField.text != "" && typeField.text != "")
+    private func checkAllFilled() -> Bool {
+        return (
+            nameField.text            != "" &&
+            emailField.text           != "" &&
+            passwordField.text        != "" &&
+            confirmPasswordField.text != "" &&
+            typeField.text            != ""
+        )
     }
     
     private func validateEmail(candidate: String) -> Bool {
@@ -33,9 +39,9 @@ class CreateUserViewController: UIViewController {
         return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: candidate)
     }
 
-    private func checkFields() -> Bool{
+    private func checkFields() -> Bool {
         let emailIsValid = validateEmail(candidate: emailField.text!)
-        guard emailIsValid else{
+        guard emailIsValid else {
             displayMessage(msg: "Invalid email")
             return false
         }
@@ -46,7 +52,7 @@ class CreateUserViewController: UIViewController {
         return true
     }
     
-    private func getCurrentDate() -> String{
+    private func getCurrentDate() -> String {
         let now = Date()
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
@@ -67,7 +73,7 @@ class CreateUserViewController: UIViewController {
         return newUser
     }
     
-    private func setupHeaders() -> HTTPHeaders{
+    private func setupHeaders() -> HTTPHeaders {
         let token = UserDefaults.standard.value(forKey: "user_auth_token")!
         let headers: HTTPHeaders = [
             "Authorization": token as! String
@@ -75,7 +81,7 @@ class CreateUserViewController: UIViewController {
         return headers
     }
     
-    private func setupParameters(newUser: User) -> Parameters{
+    private func setupParameters(newUser: User) -> Parameters {
         let par: Parameters = [
             "name": newUser.getName(),
             "email": newUser.getEmail(),
@@ -86,8 +92,7 @@ class CreateUserViewController: UIViewController {
     }
     @IBAction func donePressed(_ sender: AnyObject) {
         
-        let allFieldsAreFilled = checkAllFilled()
-        guard allFieldsAreFilled else {
+        guard checkAllFilled() else {
             displayMessage(msg: "Please fill in all required fields")
             return
         }
@@ -103,11 +108,16 @@ class CreateUserViewController: UIViewController {
         
     }
     
-    private func makePostRequest(newUser: User){
+    private func makePostRequest(newUser: User) {
         let headers = setupHeaders()
         let parameters = setupParameters(newUser: newUser)
         
-        Alamofire.request("https://tq-template-node.herokuapp.com/user",method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+        Alamofire.request("https://tq-template-node.herokuapp.com/user",
+                          method: .post,
+                          parameters: parameters,
+                          encoding: JSONEncoding.default,
+                          headers: headers
+            ).responseJSON { response in
             
             switch response.result {
                 case .success:
@@ -121,7 +131,7 @@ class CreateUserViewController: UIViewController {
     }
     
 
-    private func displayMessage(msg: String){
+    private func displayMessage(msg: String) {
         let myAlert = UIAlertController(title: "Alert", message: msg, preferredStyle: UIAlertControllerStyle.alert)
         let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil)
         myAlert.addAction(okAction)
