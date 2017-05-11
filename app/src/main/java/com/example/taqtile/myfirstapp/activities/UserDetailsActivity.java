@@ -26,7 +26,6 @@ public class UserDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_user_details);
         token = getIntent().getStringExtra("token");
         userId = getIntent().getIntExtra("userId", -1);
