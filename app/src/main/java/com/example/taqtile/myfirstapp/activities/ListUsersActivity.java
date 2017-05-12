@@ -55,17 +55,19 @@ public class ListUsersActivity extends AppCompatActivity implements UserListList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_users);
-//        token = getIntent().getStringExtra("token");
+        getToken();
 
+        listUsersProvider = new ListUsersProvider();
+        finalRequest(1);
+    }
+
+    private void getToken(){
         SharedPreferences prefs = getSharedPreferences(SignInActivity.PREF_TOKEN, MODE_PRIVATE);
         token = prefs.getString("token", "empty_token");
 
         if (token.equals("empty_token")) {
             Toast.makeText(this, "Erro no token", Toast.LENGTH_LONG).show();
         }
-
-        listUsersProvider = new ListUsersProvider();
-        finalRequest(1);
     }
 
     private void bindViews() {

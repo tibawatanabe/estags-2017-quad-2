@@ -51,12 +51,21 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.ListUsersActivity" />
         </activity>
-        <activity android:name=".activities.CreateUserActivity"
+        <activity
+            android:name=".activities.CreateUserActivity"
             android:label="Create user"
-            android:parentActivityName=".activities.ListUsersActivity">>
+            android:parentActivityName=".activities.ListUsersActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.ListUsersActivity" />
+        </activity>
+
+        <activity android:name=".activities.EditUserActivity"
+            android:label="Edit user"
+            android:parentActivityName=".activities.UserDetailsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.UserDetailsActivity" />
         </activity>
     </application>
 

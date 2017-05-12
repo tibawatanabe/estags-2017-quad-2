@@ -6,12 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.taqtile.myfirstapp.R;
 import com.example.taqtile.myfirstapp.models.createUser.CreateUserRemoteRequest;
-import com.example.taqtile.myfirstapp.models.createUser.CreateUserRemoteResponse;
+import com.example.taqtile.myfirstapp.models.UserDataRemoteResponse;
 import com.example.taqtile.myfirstapp.providers.createUser.CreateUserProvider;
 
 import retrofit2.Call;
@@ -89,18 +88,24 @@ public class CreateUserActivity extends AppCompatActivity {
         createUserRemoteRequest.setType(type);
         if (password.equals(confirmPassword)){
             createUserRemoteRequest.setPassword(password);
-            createUserProvider.performRequest(token, createUserRemoteRequest, new Callback<CreateUserRemoteResponse>() {
+            createUserProvider.performRequest(token, createUserRemoteRequest, new Callback<UserDataRemoteResponse>() {
                 @Override
-                public void onResponse(Call<CreateUserRemoteResponse> call, Response<CreateUserRemoteResponse> response) {
+                public void onResponse(Call<UserDataRemoteResponse> call, Response<UserDataRemoteResponse> response) {
                     if (response.isSuccessful()){
-                        Toast.makeText(CreateUserActivity.this, "User successfully created!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(CreateUserActivity.this, "User successfully created!", Toast.LENGTH_SHORT).show();
+                        nameEditText.setText("");
+                        emailEditText.setText("");
+                        typeEditText.setText("");
+                        passwordEditText.setText("");
+                        confirmPasswordEditText.setText("");
+
                     }else{
                         Toast.makeText(CreateUserActivity.this, "Error " + response.code(), Toast.LENGTH_LONG).show();
                     }
                 }
 
                 @Override
-                public void onFailure(Call<CreateUserRemoteResponse> call, Throwable t) {
+                public void onFailure(Call<UserDataRemoteResponse> call, Throwable t) {
                     Toast.makeText(CreateUserActivity.this, "Error de conexão com o servidor.", Toast.LENGTH_LONG).show();
                 }
             });

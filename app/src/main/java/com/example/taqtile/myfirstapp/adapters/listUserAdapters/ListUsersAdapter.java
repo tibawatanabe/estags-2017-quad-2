@@ -184,5 +184,4 @@ public class ListUsersAdapter extends RecyclerView.Adapter<ListUsersViewHolder> 
 
         return usersListPendingRemoval.contains(item);
     }
-
 }
