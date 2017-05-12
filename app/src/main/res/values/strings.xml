@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">My FirstApp</string>
+    <string name="edit_message">Enter a message</string>
+    <string name="button_send">Send</string>
+    <string name="activity_main_button_login">Fazer login</string>
+    <string name="id_field">ID: </string>
+    <string name="name_field">Name: </string>
+    <string name="email_field">E-mail: </string>
+    <string name="type_field">Type: </string>
+    <string name="created_at_field">Created at: </string>
+    <string name="updated_at_field">Updated at: </string>
+    <string name="title_activity_test">TestActivity</string>
+    <string name="password_field">Password: </string>
+    <string name="confirm_password_field">Confirm password: </string>
+    <string name="create_button">Create</string>
+    <string name="save_button">Save</string>
+    <string name="undo_button">undo</string>
+    <string name="edit_button">Edit</string>
+</resources>

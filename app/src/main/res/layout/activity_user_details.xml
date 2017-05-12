@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/activity_user_details_id_field"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:text="@string/id_field"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/activity_user_details_name_field"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/activity_user_details_id"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/activity_user_details_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:textSize="18sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/activity_user_details_id_field"
+        app:layout_constraintBottom_toTopOf="@+id/activity_user_details_name"
+        app:layout_constraintLeft_toRightOf="@+id/activity_user_details_id_field"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/activity_user_details_name_field"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:text="@string/name_field"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/activity_user_details_email_field"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/activity_user_details_name"
+        app:layout_constraintTop_toBottomOf="@+id/activity_user_details_id_field" />
+
+    <TextView
+        android:id="@+id/activity_user_details_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:textSize="18sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/activity_user_details_name_field"
+        app:layout_constraintBottom_toTopOf="@+id/activity_user_details_email"
+        app:layout_constraintLeft_toRightOf="@+id/activity_user_details_name_field"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_user_details_id" />
+
+    <TextView
+        android:id="@+id/activity_user_details_email_field"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:text="@string/email_field"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/activity_user_details_type_field"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/activity_user_details_email"
+        app:layout_constraintTop_toBottomOf="@+id/activity_user_details_name_field" />
+
+    <TextView
+        android:id="@+id/activity_user_details_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:textSize="18sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/activity_user_details_email_field"
+        app:layout_constraintBottom_toTopOf="@+id/activity_user_details_type"
+        app:layout_constraintLeft_toRightOf="@+id/activity_user_details_email_field"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_user_details_name" />
+
+    <TextView
+        android:id="@+id/activity_user_details_type_field"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:text="@string/type_field"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/activity_user_details_created_at_field"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/activity_user_details_type"
+        app:layout_constraintTop_toBottomOf="@+id/activity_user_details_email_field" />
+
+    <TextView
+        android:id="@+id/activity_user_details_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:textSize="18sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/activity_user_details_type_field"
+        app:layout_constraintBottom_toTopOf="@+id/activity_user_details_updated_at"
+        app:layout_constraintLeft_toRightOf="@+id/activity_user_details_type_field"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_user_details_email" />
+
+    <TextView
+        android:id="@+id/activity_user_details_created_at_field"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:text="@string/created_at_field"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/activity_user_details_updated_at_field"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/activity_user_details_updated_at"
+        app:layout_constraintTop_toBottomOf="@+id/activity_user_details_type_field" />
+
+    <TextView
+        android:id="@+id/activity_user_details_created_at"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:textSize="18sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/activity_user_details_created_at_field"
+        app:layout_constraintBottom_toTopOf="@+id/activity_user_details_updated_at"
+        app:layout_constraintLeft_toRightOf="@+id/activity_user_details_created_at_field"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_user_details_type" />
+
+    <TextView
+        android:id="@+id/activity_user_details_updated_at_field"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:text="@string/updated_at_field"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/activity_user_details_edit_button"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/activity_user_details_updated_at"
+        app:layout_constraintTop_toBottomOf="@+id/activity_user_details_created_at_field" />
+
+    <TextView
+        android:id="@+id/activity_user_details_updated_at"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:textSize="18sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/activity_user_details_updated_at_field"
+        app:layout_constraintBottom_toTopOf="@+id/activity_user_details_edit_button"
+        app:layout_constraintLeft_toRightOf="@+id/activity_user_details_updated_at_field"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_user_details_created_at" />
+
+    <Button
+        android:id="@+id/activity_user_details_edit_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_16dp"
+        android:layout_marginRight="@dimen/margin_16dp"
+        android:text="@string/edit_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_user_details_updated_at" />
+
+
+</android.support.constraint.ConstraintLayout>
